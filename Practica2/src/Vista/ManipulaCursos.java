@@ -83,7 +83,7 @@ public class ManipulaCursos extends javax.swing.JFrame {
         txt_Creditos = new javax.swing.JTextField();
         gUI_Botones1 = new Vista.GUI_Botones();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Siglas:");
 
