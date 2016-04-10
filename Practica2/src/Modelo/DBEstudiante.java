@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author Luisza
  */
-public class BDEstudiante {
+public class DBEstudiante {
 
     private ArrayList<Estudiante> arregloEstudiante;
     private String matrizDatos[][];
 
-    public BDEstudiante() {
+    public DBEstudiante() {
 
         this.arregloEstudiante = new ArrayList<Estudiante>();
     }
@@ -113,6 +113,10 @@ public class BDEstudiante {
             }
                 
         return info;
+    }
+
+    public ArrayList<Estudiante> getArregloEstudiante() {
+        return arregloEstudiante;
     }
     
     

@@ -6,7 +6,7 @@
 package Controlador;
 
 import Modelo.Estudiante;
-import Modelo.BDEstudiante;
+import Modelo.DBEstudiante;
 import Modelo.EstudianteException;
 import Vista.GuiBuscarEstudiante;
 import Vista.ManipulaEstudiantes;
@@ -37,10 +37,10 @@ public class ControladorMantenimientoEstudiate implements ActionListener {
     private ManipulaEstudiantes manipulaEstudiantes;
 
     private Estudiante estudiante;
-    private BDEstudiante db;
+    private DBEstudiante db;
     private GuiBuscarEstudiante guiBuscarEstudiante;
 
-    public ControladorMantenimientoEstudiate(ManipulaEstudiantes manipulaEstudiantes, BDEstudiante db) {
+    public ControladorMantenimientoEstudiate(ManipulaEstudiantes manipulaEstudiantes, DBEstudiante db) {
         this.manipulaEstudiantes = manipulaEstudiantes;
         this.db = db;
         this.guiBuscarEstudiante = new GuiBuscarEstudiante();

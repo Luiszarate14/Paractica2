@@ -26,6 +26,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jtManipulaEstudiante.addActionListener(cVentanaPrincipal);
         this.reporteEstudiantes.addActionListener(cVentanaPrincipal);
         this.consultaEstudiantes.addActionListener(cVentanaPrincipal);
+        this.mantenercurso.addActionListener(cVentanaPrincipal);
     }
 
     /**
@@ -45,6 +46,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jtManipulaEstudiante = new javax.swing.JMenuItem();
         reporteEstudiantes = new javax.swing.JMenuItem();
         consultaEstudiantes = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mantenercurso = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +78,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu2.add(consultaEstudiantes);
 
         menuEstudiante.add(jMenu2);
+
+        jMenu3.setText("Cursos");
+
+        mantenercurso.setText("Mantener Curso");
+        jMenu3.add(mantenercurso);
+
+        menuEstudiante.add(jMenu3);
 
         setJMenuBar(menuEstudiante);
 
@@ -143,7 +153,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jtManipulaEstudiante;
+    private javax.swing.JMenuItem mantenercurso;
     private javax.swing.JMenuBar menuEstudiante;
     private javax.swing.JMenuItem reporteEstudiantes;
     // End of variables declaration//GEN-END:variables

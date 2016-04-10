@@ -7,7 +7,7 @@ package Vista;
 
 import Controlador.ControladorMantenimientoEstudiate;
 import Controlador.Validador;
-import Modelo.BDEstudiante;
+import Modelo.DBEstudiante;
 import Modelo.EstudianteException;
 import javax.swing.JLabel;
 
@@ -21,7 +21,7 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
     private ControladorMantenimientoEstudiate cme;
     private Validador validate;
 
-    public ManipulaEstudiantes(BDEstudiante db) {
+    public ManipulaEstudiantes(DBEstudiante db) {
         initComponents();
         cme = new ControladorMantenimientoEstudiate(this, db);
         this.guiBotones1.agregarEvento(cme);

@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Modelo.BDEstudiante;
+import Modelo.DBEstudiante;
 
 /**
  *
@@ -13,7 +13,7 @@ import Modelo.BDEstudiante;
  */
 public class GuiBuscarEstudiante extends javax.swing.JFrame {
 
-   private BDEstudiante regis;
+   private DBEstudiante regis;
     /**
      * Creates new form GuiBuscarEstudiante
      */
