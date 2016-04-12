@@ -55,6 +55,8 @@ public class ControlVentanaPrincipal implements ActionListener {
             dbEstudiante.setArregloEstudiante(salvador.obtenerEstudiante());
             dbCurso.setDb(salvador.obtenerCurso());
             dbMatricula.setMatriculas(salvador.obtenerMatriculas());
+        }else{
+            config_manager.setProperty("formato", "json");
         }
     }
 
