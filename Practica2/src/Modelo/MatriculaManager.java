@@ -33,7 +33,8 @@ public class MatriculaManager {
              if(est != null){
                  estudiantes.add(est);
              }else{
-             // Loggin problems
+             //FIXME: Loggin problems
+             
              }
            }
        

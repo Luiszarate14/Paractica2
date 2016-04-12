@@ -247,6 +247,7 @@ public class ManipulaCurso extends javax.swing.JFrame {
       this.sigla.setText("");
       this.nombre.setText("");
       this.creditos.setText("");
+      // FIXME: limpiar lista de estudiantes matriculados
     }
 
     public void setMensaje(String message) {

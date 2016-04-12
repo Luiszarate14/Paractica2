@@ -34,7 +34,7 @@ public class DBMatricula {
     }
     public void agregar_matricula(Matricula matricula){
         if(matriculas.contains(matricula)){
-            // EXCEPTION
+            //FIXME: EXCEPTION
         }
         matriculas.add(matricula);
     }
