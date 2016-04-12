@@ -17,6 +17,7 @@ import java.nio.file.Path;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utilidades.AyudanteOS;
 
 /**
  * Ejemplo de archivo de configuraciones y Singlenton
@@ -29,15 +30,18 @@ public class ConfigManager {
     private static ConfigManager cm = new ConfigManager();
 
     private Properties props;
+    private AyudanteOS ayudaos;
 
     private ConfigManager() {
         // que sea privado previene que otros lo instancien
         props = new Properties();
+        ayudaos = new AyudanteOS();
     }
 
     public static ConfigManager getInstance() {
         // retorna la unica instancia
         return cm;
+
     }
 
     public String getProperty(String key) {
@@ -48,20 +52,11 @@ public class ConfigManager {
         props.setProperty(key, value);
     }
 
-    private Path get_config_dir() throws IOException {
-        // Se asegura que siempre exista el directorio de configuracion
-        Path path = FileSystems.getDefault().getPath(System.getProperty("user.home"), ".LeeArchivos");
-        if (!Files.isDirectory(path)) {
-            Files.createDirectories(path);
-        }
-        return path;
-    }
+
 
     private String get_config_file() throws IOException {
         //Retorna el archivo de configuracion
-        Path path = this.get_config_dir();
-        path = path.getFileSystem().getPath(path.toString(), "config.properties");
-        return path.toString();
+        return ayudaos.get_config_file("config.properties");
     }
 
     public void load_config() {

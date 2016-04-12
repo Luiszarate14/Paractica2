@@ -14,8 +14,16 @@ import java.awt.event.WindowEvent;
  * @author luisza
  */
 public class ControlCierreVentana extends WindowAdapter{
+    
+    private ControlVentanaPrincipal cVentanaPrincipal;
+
+    public ControlCierreVentana(ControlVentanaPrincipal cVentanaPrincipal) {
+        this.cVentanaPrincipal = cVentanaPrincipal;
+    }
+
     @Override
     public void windowClosing(WindowEvent e){
         ConfigManager.getInstance().save_config();
+        this.cVentanaPrincipal.guardar_en_disco();
     }
 }

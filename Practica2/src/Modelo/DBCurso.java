@@ -17,6 +17,15 @@ public class DBCurso {
     public DBCurso() {
         db = new HashMap<String, Curso>();
     }
+
+    public HashMap<String, Curso> getDb() {
+        return db;
+    }
+
+    public void setDb(HashMap<String, Curso> db) {
+        this.db = db;
+    }
+    
     
     
     public void agrega_curso(Curso curso){

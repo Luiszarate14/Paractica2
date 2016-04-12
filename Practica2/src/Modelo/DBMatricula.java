@@ -19,6 +19,10 @@ public class DBMatricula {
         
     }
 
+    public void setMatriculas(ArrayList<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+
     public Matricula obtener_matricula(String carnet, String sigla){
         for(Matricula mat: matriculas){
             if(mat.getCurso().equals(sigla) &&

@@ -21,6 +21,10 @@ public class DBEstudiante {
         this.arregloEstudiante = new ArrayList<Estudiante>();
     }
 
+    public void setArregloEstudiante(ArrayList<Estudiante> arregloEstudiante) {
+        this.arregloEstudiante = arregloEstudiante;
+    }
+
     public String agregarEstudiante(Estudiante estudiante) throws EstudianteException {
 
         if (verificarEstudiante(estudiante.getCarnet())) 

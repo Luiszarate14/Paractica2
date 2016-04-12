@@ -14,6 +14,8 @@ import Vista.ConsultaEstudiantes;
 import Vista.ManipulaCurso;
 import Vista.ManipulaEstudiantes;
 import Vista.ReporteEstudiante;
+import factories.SalvadorArchivos;
+import factories.SalvadorFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -41,14 +43,26 @@ public class ControlVentanaPrincipal implements ActionListener {
         dbMatricula = new DBMatricula();
         config_manager = ConfigManager.getInstance();
         config_manager.load_config();
-
+        cargar_de_disco();
+        
     }
 
+    private void cargar_de_disco(){
+        SalvadorFactory sf = new SalvadorFactory();
+        String formato = config_manager.getProperty("formato");
+        SalvadorArchivos salvador = sf.getSalvador(formato);
+        if(salvador!= null){
+            dbEstudiante.setArregloEstudiante(salvador.obtenerEstudiante());
+            dbCurso.setDb(salvador.obtenerCurso());
+            dbMatricula.setMatriculas(salvador.obtenerMatriculas());
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equalsIgnoreCase("Salir")) {
             config_manager.save_config();
+            guardar_en_disco();
             System.exit(0);
         }else
 
@@ -85,10 +99,23 @@ public class ControlVentanaPrincipal implements ActionListener {
        }else
         if(e.getActionCommand().equalsIgnoreCase("XML")){
             this.config_manager.setProperty("formato", "xml");
+            guardar_en_disco();
         }else
         if(e.getActionCommand().equalsIgnoreCase("json")){
             this.config_manager.setProperty("formato", "json");
+            guardar_en_disco();
         }
+    }
+    
+    public void guardar_en_disco(){
+        guardar_en_archivo(this.config_manager.getProperty("formato"));
+    }
+    private void guardar_en_archivo(String formato){
+        SalvadorFactory sf = new SalvadorFactory();
+        SalvadorArchivos salvador = sf.getSalvador(formato);
+        salvador.guardarCurso(dbCurso.getDb());
+        salvador.guardarEstudiante(dbEstudiante.getArregloEstudiante());
+        salvador.guardarMatriculas(dbMatricula.getMatriculas());
     }
     
 }

@@ -52,7 +52,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     this.jbjson.setSelected(true);
         }
 
-        addWindowListener(new ControlCierreVentana());
+        addWindowListener(new ControlCierreVentana(cVentanaPrincipal));
 
 
         
