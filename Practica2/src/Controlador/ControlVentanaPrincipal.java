@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ConfigManager;
 import Modelo.DBCurso;
 import Modelo.Estudiante;
 import Modelo.DBEstudiante;
@@ -31,21 +32,24 @@ public class ControlVentanaPrincipal implements ActionListener {
     private DBCurso dbCurso;
     private ManipulaCurso manipulaCurso;
     private DBMatricula dbMatricula;
+    private ConfigManager config_manager;
 
     public ControlVentanaPrincipal() {
 
         dbEstudiante = new DBEstudiante();
         dbCurso = new DBCurso();
         dbMatricula = new DBMatricula();
+        config_manager = ConfigManager.getInstance();
+        config_manager.load_config();
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equalsIgnoreCase("Salir")) {
-
+            config_manager.save_config();
             System.exit(0);
-
         }else
 
         if (e.getActionCommand().equalsIgnoreCase("Manipular Estudiantes")) {
@@ -78,6 +82,13 @@ public class ControlVentanaPrincipal implements ActionListener {
                 this.dbEstudiante.getArregloEstudiante()
            );
            this.manipulaCurso.setVisible(true);
-       }
+       }else
+        if(e.getActionCommand().equalsIgnoreCase("XML")){
+            this.config_manager.setProperty("formato", "xml");
+        }else
+        if(e.getActionCommand().equalsIgnoreCase("json")){
+            this.config_manager.setProperty("formato", "json");
+        }
     }
+    
 }

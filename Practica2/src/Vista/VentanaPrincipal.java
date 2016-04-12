@@ -5,7 +5,12 @@
  */
 package Vista;
 
+import Controlador.ControlCierreVentana;
 import Controlador.ControlVentanaPrincipal;
+import Modelo.ConfigManager;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.ButtonGroup;
 
 /**
  *
@@ -27,6 +32,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.reporteEstudiantes.addActionListener(cVentanaPrincipal);
         this.consultaEstudiantes.addActionListener(cVentanaPrincipal);
         this.mantenercurso.addActionListener(cVentanaPrincipal);
+        this.jbxml.addActionListener(cVentanaPrincipal);
+        this.jbjson.addActionListener(cVentanaPrincipal);
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(this.jbjson);
+        group.add(this.jbxml);
+        String formato;
+        formato = ConfigManager.getInstance().getProperty("formato");
+        System.err.println(formato);
+        switch(formato){
+                case "xml":
+                    this.jbxml.setSelected(true);;
+                    break;
+                case "json":
+                    this.jbjson.setSelected(true);
+                    break;
+                default: 
+                    this.jbjson.setSelected(true);
+        }
+
+        addWindowListener(new ControlCierreVentana());
+
+
+        
+        
+        
     }
 
     /**
@@ -42,6 +73,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuEstudiante = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnSalir = new javax.swing.JMenuItem();
+        jbjson = new javax.swing.JRadioButtonMenuItem();
+        jbxml = new javax.swing.JRadioButtonMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jtManipulaEstudiante = new javax.swing.JMenuItem();
         reporteEstudiantes = new javax.swing.JMenuItem();
@@ -63,6 +96,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(btnSalir);
+
+        jbjson.setSelected(true);
+        jbjson.setText("Json");
+        jMenu1.add(jbjson);
+
+        jbxml.setSelected(true);
+        jbxml.setText("XML");
+        jMenu1.add(jbxml);
 
         menuEstudiante.add(jMenu1);
 
@@ -154,6 +195,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JRadioButtonMenuItem jbjson;
+    private javax.swing.JRadioButtonMenuItem jbxml;
     private javax.swing.JMenuItem jtManipulaEstudiante;
     private javax.swing.JMenuItem mantenercurso;
     private javax.swing.JMenuBar menuEstudiante;
