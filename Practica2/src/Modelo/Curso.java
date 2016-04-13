@@ -7,28 +7,39 @@ package Modelo;
 
 /**
  *
- * @author Carolina
+ * @author luisza
  */
 public class Curso {
-    private String siglas;
+    private String sigla;
     private String nombre;
-    private int creditos;
+    private int numero_creditos;
+    private int cantidad_estudiantes;
+
+    
+    public Curso(String sigla, String nombre, int numero_creditos) {
+        this.sigla = sigla;
+        this.nombre = nombre;
+        this.numero_creditos = numero_creditos;
+        cantidad_estudiantes = 0;
+    }
 
     public Curso() {
     }
-
-    public Curso(String siglas, String nombre, int creditos) {
-        this.siglas = siglas;
-        this.nombre = nombre;
-        this.creditos = creditos;
+    
+    
+    public void incrementa_cantidad_estudiantes(){
+        cantidad_estudiantes++;
+    }
+    public void decrementa_cantidad_estudiantes(){
+        cantidad_estudiantes++;
     }
 
-    public String getSiglas() {
-        return siglas;
+    public String getSigla() {
+        return sigla;
     }
 
-    public void setSiglas(String siglas) {
-        this.siglas = siglas;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
     public String getNombre() {
@@ -39,14 +50,20 @@ public class Curso {
         this.nombre = nombre;
     }
 
-    public int getCreditos() {
-        return creditos;
+    public int getNumero_creditos() {
+        return numero_creditos;
     }
 
-    public void setCreditos(int creditos) {
-        this.creditos = creditos;
+    public void setNumero_creditos(int numero_creditos) {
+        this.numero_creditos = numero_creditos;
     }
-    
-    
+
+    public int getCantidad_estudiantes() {
+        return cantidad_estudiantes;
+    }
+
+    public void setCantidad_estudiantes(int cantidad_estudiantes) {
+        this.cantidad_estudiantes = cantidad_estudiantes;
+    }
     
 }

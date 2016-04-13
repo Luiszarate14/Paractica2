@@ -5,67 +5,102 @@
  */
 package Vista;
 
-import Controlador.Controlador_ManipulaEstudiantes;
-import Modelo.Estudiante;
+import Controlador.ControladorMantenimientoEstudiate;
+import Controlador.Validador;
+import Modelo.DBEstudiante;
+import Modelo.EstudianteException;
+import javax.swing.JLabel;
+
 
 /**
  *
- * @author Carolina
+ * @author Luisza
  */
 public class ManipulaEstudiantes extends javax.swing.JFrame {
 
-    private Controlador_ManipulaEstudiantes cme;
-    /**
-     * Creates new form ManipulaEstudiantes
-     */
-    public ManipulaEstudiantes() {
+    private ControladorMantenimientoEstudiate cme;
+    private Validador validate;
+
+    public ManipulaEstudiantes(DBEstudiante db) {
         initComponents();
-        cme = new Controlador_ManipulaEstudiantes(this);
-        this.gUI_Botones2.agregar_eventos(cme);
+        cme = new ControladorMantenimientoEstudiate(this, db);
+        this.guiBotones1.agregarEvento(cme);
+        validate = new Validador();
     }
-    
-    public Estudiante getEstudiante(){
-    Estudiante e = new Estudiante(txtNombre.getText(), txtCarne.getText(),txtCorreo.getText());
-        return e;  
+
+    public int getCodigoPorFuente(Object object) {
+          return this.guiBotones1.getCodigoPorFuente(object);
     }
-    
-    public String getTxtCarne() {
-        return txtCarne.getText();
-    }    
-    public String getTxtNombre() {
-        return txtNombre.getText();
-    } 
-    public String getTxtCorreo() {
-        return txtCorreo.getText();
+
+  
+
+
+public void setTexCarnet(String texCarnet) {
+        this.texCarnet.setText(texCarnet);
     }
-    public void setTxtNombre(String nombre) {
-        this.txtNombre.setText(nombre);
+
+    public void setTexCorreo(String texCorreo) {
+        this.texCorreo.setText(texCorreo);
     }
-    public void setTxtCarne(String carne){
-        txtCarne.setText(carne);
+
+    public void setTexNombre(String texNombre) {
+        this.texNombre.setText(texNombre);
     }
-    public void setTxtCorreo(String correo){
-        txtCorreo.setText(correo);
+
+    public String getTexCarnet() {
+        return this.texCarnet.getText();
     }
-    public boolean validarCampos(){           
-        if(txtNombre.getText().equals("")|| txtCarne.getText().equals("")|| txtCorreo.getText().equals("")){
-            return true;
-        }           
+
+    public String getTexCorreo() {
+        return this.texCorreo.getText();
+    }
+
+    public String getTexNombre() {
+        return this.texNombre.getText();
+    }
+
+    public boolean verificar() throws EstudianteException {
+        boolean escarnet = verificarTexCarnet();
+                    
+        if ((this.texCarnet.getText().equals("") || this.texCorreo.getText().equals("")) || this.texCorreo.getText().equals("")) {
+        
+          return true;
+        } 
+            
         return false;
     }
-    
-    public boolean validarCarne(){
-        if(txtCarne.getText().equals("")){
-            return true;
-        }
-        return false;
+     public boolean verificarTexCarnet() throws EstudianteException {
+ 
+         boolean escarnet = validate.validarCarnet(this.texCarnet.getText());
+         if(!escarnet){
+             throw new EstudianteException("Formato inválido de carnet", 
+                     false);
+         }
+         
+         return !escarnet;
     }
      
-    public void setEstudiante(String nombre, String carne, String correo) {
-        txtNombre.setText(nombre);
-        txtCarne.setText(carne);
-        txtCorreo.setText(correo);
+     public void setEditable(boolean re){
+         this.texCarnet.setEditable(re);
+     }
+     /**public void setText(String nombre, String carnet, String correo){
+      
+        texCarnet.setText(carnet);
+        texNombre.setText(nombre);
+        texCorreo.setText(correo);
+    }*/
+     
+
+    public void limpiar() {
+        this.texCarnet.setText("");
+        this.texNombre.setText("");
+        this.texCorreo.setText("");
     }
+
+    public void setMensajes(String mensajes) {
+        this.Mensajes.setText(mensajes);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,38 +110,31 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gUI_Botones1 = new Vista.GUI_Botones();
-        gUI_Botones2 = new Vista.GUI_Botones();
+        guiBotones1 = new Vista.GuiBotones();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtCarne = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
+        texCarnet = new javax.swing.JTextField();
+        texNombre = new javax.swing.JTextField();
+        texCorreo = new javax.swing.JTextField();
+        Mensajes = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout gUI_Botones1Layout = new javax.swing.GroupLayout(gUI_Botones1);
-        gUI_Botones1.setLayout(gUI_Botones1Layout);
-        gUI_Botones1Layout.setHorizontalGroup(
-            gUI_Botones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 173, Short.MAX_VALUE)
-        );
-        gUI_Botones1Layout.setVerticalGroup(
-            gUI_Botones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jLabel1.setText("Carnet");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jLabel2.setText("Nombre");
 
-        jLabel1.setText("Nombre:");
+        jLabel3.setText("Correo");
 
-        jLabel2.setText("Carné:");
-
-        jLabel3.setText("Correo:");
-
-        txtCarne.addActionListener(new java.awt.event.ActionListener() {
+        texCarnet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCarneActionPerformed(evt);
+                texCarnetActionPerformed(evt);
+            }
+        });
+
+        texNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texNombreActionPerformed(evt);
             }
         });
 
@@ -115,34 +143,34 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addGap(32, 32, 32)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                    .addComponent(txtCarne)
-                    .addComponent(txtCorreo))
-                .addContainerGap(102, Short.MAX_VALUE))
+                    .addComponent(texCarnet, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(texNombre)
+                    .addComponent(texCorreo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(texCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txtCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(texNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(texCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,67 +178,55 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(gUI_Botones2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(guiBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(330, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(202, 202, 202))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(Mensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(gUI_Botones2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Mensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guiBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCarneActionPerformed
+    private void texCarnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texCarnetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCarneActionPerformed
+    }//GEN-LAST:event_texCarnetActionPerformed
+
+    private void texNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_texNombreActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   public int getCodigo(Object obj){
-       int dev = 0;
-            if(this.txtCarne.equals(obj)){
-                dev = Controlador_ManipulaEstudiantes.CARNE;
-            }else if(this.txtNombre.equals(obj)){
-                dev = Controlador_ManipulaEstudiantes.NOMBRE;
-            }else if(this.txtCorreo.equals(obj)){
-                dev = Controlador_ManipulaEstudiantes.CORREO;
-            }else{
-                dev = this.gUI_Botones2.get_codigo_por_fuente(obj);
-            }
-        
-       return dev;
-   }
-   
-   public void limpiar(){
-       txtCarne.setText("");
-       txtCorreo.setText("");
-       txtNombre.setText("");
-   }
-   
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Vista.GUI_Botones gUI_Botones1;
-    private Vista.GUI_Botones gUI_Botones2;
+    private javax.swing.JLabel Mensajes;
+    private Vista.GuiBotones guiBotones1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtCarne;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField texCarnet;
+    private javax.swing.JTextField texCorreo;
+    private javax.swing.JTextField texNombre;
     // End of variables declaration//GEN-END:variables
 }

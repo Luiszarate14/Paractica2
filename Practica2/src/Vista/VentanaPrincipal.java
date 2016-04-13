@@ -5,25 +5,58 @@
  */
 package Vista;
 
-import Controlador.Controlador_VentanaPrincipal;
+import Controlador.ControlCierreVentana;
+import Controlador.ControlVentanaPrincipal;
+import Modelo.ConfigManager;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.ButtonGroup;
 
 /**
  *
- * @author Carolina
+ * @author Luisza
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private Controlador_VentanaPrincipal c_ventanaPrincipal;
+    private ControlVentanaPrincipal cVentanaPrincipal;
+   
+    
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
-        this.c_ventanaPrincipal = new Controlador_VentanaPrincipal();
-        this.btn_Salir.addActionListener(c_ventanaPrincipal);
-        this.btn_Manipula.addActionListener(c_ventanaPrincipal);
-        this.jt_ManipulaCursos.addActionListener(c_ventanaPrincipal);
-        this.jm_matricular.addActionListener(c_ventanaPrincipal);
+        this.cVentanaPrincipal= new ControlVentanaPrincipal();
+        this.btnSalir.addActionListener(cVentanaPrincipal);
+        this.jtManipulaEstudiante.addActionListener(cVentanaPrincipal);
+        this.reporteEstudiantes.addActionListener(cVentanaPrincipal);
+        this.consultaEstudiantes.addActionListener(cVentanaPrincipal);
+        this.mantenercurso.addActionListener(cVentanaPrincipal);
+        this.jbxml.addActionListener(cVentanaPrincipal);
+        this.jbjson.addActionListener(cVentanaPrincipal);
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(this.jbjson);
+        group.add(this.jbxml);
+        String formato;
+        formato = ConfigManager.getInstance().getProperty("formato");
+        System.err.println(formato);
+        switch(formato){
+                case "xml":
+                    this.jbxml.setSelected(true);;
+                    break;
+                case "json":
+                    this.jbjson.setSelected(true);
+                    break;
+                default: 
+                    this.jbjson.setSelected(true);
+        }
+
+        addWindowListener(new ControlCierreVentana(cVentanaPrincipal));
+
+
+        
+        
         
     }
 
@@ -36,116 +69,89 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuBar3 = new javax.swing.JMenuBar();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
-        menuPrincipal = new javax.swing.JMenuBar();
-        jMenuArchivo = new javax.swing.JMenu();
-        btn_Salir = new javax.swing.JMenuItem();
-        jt_manipulEstudiante = new javax.swing.JMenu();
-        btn_Manipula = new javax.swing.JMenuItem();
-        btn_manipulaCursos = new javax.swing.JMenu();
-        jt_ManipulaCursos = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        jm_matricular = new javax.swing.JMenuItem();
-
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem2.setText("jMenuItem2");
-
-        jMenuItem3.setText("jMenuItem3");
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("File");
-        jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
-
-        jMenu5.setText("jMenu5");
-
-        jMenuItem4.setText("jMenuItem4");
-
-        jMenu6.setText("File");
-        jMenuBar3.add(jMenu6);
-
-        jMenu7.setText("Edit");
-        jMenuBar3.add(jMenu7);
+        menuEstudiante = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        btnSalir = new javax.swing.JMenuItem();
+        jbjson = new javax.swing.JRadioButtonMenuItem();
+        jbxml = new javax.swing.JRadioButtonMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jtManipulaEstudiante = new javax.swing.JMenuItem();
+        reporteEstudiantes = new javax.swing.JMenuItem();
+        consultaEstudiantes = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mantenercurso = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
 
-        jMenuArchivo.setText("Archivo");
+        jMenu1.setText("Archivos");
 
-        btn_Salir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        btn_Salir.setText("Salir");
-        btn_Salir.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_SalirActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        jMenuArchivo.add(btn_Salir);
+        jMenu1.add(btnSalir);
 
-        menuPrincipal.add(jMenuArchivo);
+        jbjson.setSelected(true);
+        jbjson.setText("Json");
+        jMenu1.add(jbjson);
 
-        jt_manipulEstudiante.setText("Estudiantes");
+        jbxml.setSelected(true);
+        jbxml.setText("XML");
+        jMenu1.add(jbxml);
 
-        btn_Manipula.setText("Manipular estudiantes");
-        jt_manipulEstudiante.add(btn_Manipula);
+        menuEstudiante.add(jMenu1);
 
-        menuPrincipal.add(jt_manipulEstudiante);
+        jMenu2.setText("Estudiantes");
 
-        btn_manipulaCursos.setText("Cursos");
+        jtManipulaEstudiante.setText("Manipular Estudiantes");
+        jMenu2.add(jtManipulaEstudiante);
 
-        jt_ManipulaCursos.setText("Manipular cursos");
-        btn_manipulaCursos.add(jt_ManipulaCursos);
+        reporteEstudiantes.setText("Reporte Estudiantes");
+        jMenu2.add(reporteEstudiantes);
 
-        menuPrincipal.add(btn_manipulaCursos);
+        consultaEstudiantes.setText("Consultar Estudiantes");
+        jMenu2.add(consultaEstudiantes);
 
-        jMenu8.setText("Matricula");
+        menuEstudiante.add(jMenu2);
 
-        jm_matricular.setText("Matricular");
-        jMenu8.add(jm_matricular);
+        jMenu3.setText("Cursos");
 
-        menuPrincipal.add(jMenu8);
+        mantenercurso.setText("Mantener Curso");
+        jMenu3.add(mantenercurso);
 
-        setJMenuBar(menuPrincipal);
+        menuEstudiante.add(jMenu3);
+
+        setJMenuBar(menuEstudiante);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_SalirActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,29 +189,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem btn_Manipula;
-    private javax.swing.JMenuItem btn_Salir;
-    private javax.swing.JMenu btn_manipulaCursos;
+    private javax.swing.JMenuItem btnSalir;
+    private javax.swing.JMenuItem consultaEstudiantes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenuArchivo;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jm_matricular;
-    private javax.swing.JMenuItem jt_ManipulaCursos;
-    private javax.swing.JMenu jt_manipulEstudiante;
-    private javax.swing.JMenuBar menuPrincipal;
+    private javax.swing.JRadioButtonMenuItem jbjson;
+    private javax.swing.JRadioButtonMenuItem jbxml;
+    private javax.swing.JMenuItem jtManipulaEstudiante;
+    private javax.swing.JMenuItem mantenercurso;
+    private javax.swing.JMenuBar menuEstudiante;
+    private javax.swing.JMenuItem reporteEstudiantes;
     // End of variables declaration//GEN-END:variables
 }

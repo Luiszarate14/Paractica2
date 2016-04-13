@@ -7,21 +7,56 @@ package Modelo;
 
 /**
  *
- * @author Carolina
+ * @author Luisza
  */
 public class Estudiante {
- 
+
+    private String carnet;
     private String nombre;
-    private String carne;
     private String correo;
+    private static String[] etiquetas = {"carnet", "nombre", "correo"};
+
+    public static String[] getEtiquetas() {
+        return etiquetas;
+    }
+
+    public static int getTamanno() {
+        return etiquetas.length;
+    }
+
+    public String getDatos(int j) {
+
+        switch (j) {
+            case 0:
+                return carnet;
+                
+            case 1:
+                return nombre;
+                
+            case 2: 
+                return correo;
+                
+
+        }
+        return null;
+
+    }
 
     public Estudiante() {
     }
 
-    public Estudiante(String nombre, String carne, String correo) {
+    public Estudiante(String carnet, String nombre, String correo) {
+        this.carnet = carnet;
         this.nombre = nombre;
-        this.carne = carne;
         this.correo = correo;
+    }
+
+    public String getCarnet() {
+        return carnet;
+    }
+
+    public void setCarnet(String carnet) {
+        this.carnet = carnet;
     }
 
     public String getNombre() {
@@ -30,14 +65,6 @@ public class Estudiante {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getCarne() {
-        return carne;
-    }
-
-    public void setCarne(String carne) {
-        this.carne = carne;
     }
 
     public String getCorreo() {
@@ -49,7 +76,7 @@ public class Estudiante {
     }
     
     public String getInformacion(){
-        return "Nombre: " + getNombre() + "\nCarnet: " +getCarne();
+        return "Carnet "+getCarnet()+" Nombre "+getNombre()+" Correo "+getCorreo();
     }
-    
+
 }
