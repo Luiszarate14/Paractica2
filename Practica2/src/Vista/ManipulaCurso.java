@@ -255,10 +255,12 @@ public class ManipulaCurso extends javax.swing.JFrame {
     
     }
     
-    public void set_estudiantes(ArrayList<Estudiante> est_list){
+    public void set_estudiantes(ArrayList<Estudiante> est_list){//corrobacion diferente de null para que cree la ventana mantener cursos
         this.estudiantes.removeAllItems();
-        for(Estudiante est: est_list){
-           this.estudiantes.addItem(est.getCarnet());
+        if(est_list!=null){
+            for(Estudiante est: est_list){
+            this.estudiantes.addItem(est.getCarnet());
+            }
         }
     }
     
