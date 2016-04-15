@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Controlador;
-
 import Modelo.Curso;
 import Modelo.CursoException;
 import Modelo.DBCurso;
@@ -94,6 +93,7 @@ public class ControlCurso implements ActionListener{
                 dbMatricula.agregar_matricula(new Matricula(
                         sigla, carnet
                 ));
+                
                 this.mensaje = "Estudiante matriculado";
                 cargar_matriculas(dbCurso.obtener_curso(sigla));
                 break; 
@@ -103,8 +103,10 @@ public class ControlCurso implements ActionListener{
                 dbMatricula.eliminar_matricula(
                     dbMatricula.obtener_matricula(carnet, sigla)
                 );
+               
                 this.mensaje = "Estudiante desmatriculado";
                 cargar_matriculas(dbCurso.obtener_curso(sigla));
+                
                 
         }
     }

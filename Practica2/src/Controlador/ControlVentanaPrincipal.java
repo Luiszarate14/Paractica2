@@ -70,6 +70,7 @@ public class ControlVentanaPrincipal implements ActionListener {
 
         if (e.getActionCommand().equalsIgnoreCase("Manipular Estudiantes")) {
             this.manipulaEstudiantes = new ManipulaEstudiantes(dbEstudiante);
+            
             manipulaEstudiantes.show();
         }else
         if (e.getActionCommand().equalsIgnoreCase("Reporte Estudiantes")) {

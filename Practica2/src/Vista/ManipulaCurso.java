@@ -271,7 +271,6 @@ public class ManipulaCurso extends javax.swing.JFrame {
         }
         return this.estudiantes.getModel().getElementAt(pos);
     }
-    
     public void set_estudiantes_matriculados(ArrayList<Estudiante> estudiante){
         DefaultListModel listModel = new DefaultListModel();
         

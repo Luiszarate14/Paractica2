@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_05" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="Modelo.Estudiante">
+    <void property="carnet">
+     <string>b43854</string>
+    </void>
+    <void property="correo">
+     <string>123</string>
+    </void>
+    <void property="nombre">
+     <string>123</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Estudiante">
+    <void property="carnet">
+     <string>b43855</string>
+    </void>
+    <void property="correo">
+     <string>2134556</string>
+    </void>
+    <void property="nombre">
+     <string>Luis</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Modelo.Estudiante">
+    <void property="carnet">
+     <string>43434</string>
+    </void>
+    <void property="correo">
+     <string>321321</string>
+    </void>
+    <void property="nombre">
+     <string>32132</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

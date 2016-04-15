@@ -30,7 +30,7 @@ public class SalvadorJson implements SalvadorArchivos{
         escritor = new Escritor();
         ayudaos = new AyudanteOS();
     }
-
+//Users/user/Desktop/Ejemplo/ParacticaEstudianteRealizada/Practica2.estudiantes.json
     @Override
     public void guardarEstudiante(ArrayList<Estudiante> estudiantes) {
         try {

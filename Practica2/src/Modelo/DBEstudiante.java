@@ -26,12 +26,12 @@ public class DBEstudiante {
     }
 
     public String agregarEstudiante(Estudiante estudiante) throws EstudianteException {
-
+           
         if (verificarEstudiante(estudiante.getCarnet())) 
             throw new EstudianteException(
                     "Ya existe un estudiante con ese numero de carnet",
                     false);
-        
+       
         arregloEstudiante.add(estudiante);
         return "Se agrego con exito";
     }
@@ -39,7 +39,8 @@ public class DBEstudiante {
     public boolean verificarEstudiante(String carnet) {
 
         boolean dev = false;
-        if (arregloEstudiante.size() != 0) {
+        
+        if (arregloEstudiante != null) {
 
             for (int i = 0; i < arregloEstudiante.size(); i++) {
                 if (arregloEstudiante.get(i).getCarnet().equalsIgnoreCase(carnet)) {
