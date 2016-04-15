@@ -25,4 +25,7 @@ public class CursoException extends Exception {
         return limpiaInterfaz;
     }
     
+    public boolean esException(){
+        return true;
+    }
 }
