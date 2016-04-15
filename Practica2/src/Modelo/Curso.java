@@ -31,7 +31,7 @@ public class Curso {
         cantidad_estudiantes++;
     }
     public void decrementa_cantidad_estudiantes(){
-        cantidad_estudiantes++;
+        cantidad_estudiantes--;
     }
 
     public String getSigla() {
