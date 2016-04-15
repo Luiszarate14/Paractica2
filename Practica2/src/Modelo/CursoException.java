@@ -28,4 +28,8 @@ public class CursoException extends Exception {
     public boolean esException(){
         return true;
     }
+    
+    public boolean ejemplo(){
+        return false;
+    }
 }
