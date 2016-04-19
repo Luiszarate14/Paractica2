@@ -63,13 +63,10 @@ public class DBEstudiante {
 
             for (Estudiante estu:arregloEstudiante) {
                 if (estu.getCarnet().equalsIgnoreCase(carnet)) {
-
                     dev =estu;
                     break;
-
                 }
             }
-
         }
         return dev;
     }

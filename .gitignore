@@ -12,3 +12,11 @@
 hs_err_pid*
 /Practica2/build/
 /Practica2/dist/
+/Practica2/nbproject/private/
+/Practica2/null/.LeeArchivos/matriculas.dat
+/Practica2/null/.LeeArchivos/profesor.json
+/Practica2/null/.LeeArchivos/profesor.xml
+/Practica2/null/.LeeArchivos/profesor.dat
+/Practica2/null/.LeeArchivos/cursos.dat
+/Practica2/null/.LeeArchivos/estudiantes.dat
+nbproject/private/*
