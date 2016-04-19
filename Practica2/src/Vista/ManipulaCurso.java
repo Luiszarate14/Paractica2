@@ -255,10 +255,12 @@ public class ManipulaCurso extends javax.swing.JFrame {
     
     }
     
-    public void set_estudiantes(ArrayList<Estudiante> est_list){
+    public void set_estudiantes(ArrayList<Estudiante> est_list){//corrobacion diferente de null para que cree la ventana mantener cursos
         this.estudiantes.removeAllItems();
-        for(Estudiante est: est_list){
-           this.estudiantes.addItem(est.getCarnet());
+        if(est_list!=null){
+            for(Estudiante est: est_list){
+            this.estudiantes.addItem(est.getCarnet());
+            }
         }
     }
     
@@ -269,7 +271,6 @@ public class ManipulaCurso extends javax.swing.JFrame {
         }
         return this.estudiantes.getModel().getElementAt(pos);
     }
-    
     public void set_estudiantes_matriculados(ArrayList<Estudiante> estudiante){
         DefaultListModel listModel = new DefaultListModel();
         

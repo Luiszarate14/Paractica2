@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -27,18 +28,24 @@ public class MatriculaManager {
     public ArrayList<Estudiante> estudiantes_del_curso(Curso curso){
        ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
        
-       for(Matricula matricula: matriculas.getMatriculas()){
-           if(matricula.getCurso().equals(curso.getSigla())){
-             Estudiante est = dbestudiante.buscarEstudiante(matricula.getEstudiante());
-             if(est != null){
-                 estudiantes.add(est);
-             }else{
-             //FIXME: Loggin problems
-             
-             }
-           }
-       
-       }
+        for (Matricula matricula : matriculas.getMatriculas()) {
+            if(matricula.getCurso().equals(curso.getSigla())){
+                Estudiante est = dbestudiante.buscarEstudiante(matricula.getEstudiante());//comprobar que no seavacio
+                
+                    if(est != null){
+                        System.out.println("entro aqui");
+                        estudiantes.add(est);
+                    }else{
+                        //FIXME: Loggin problems
+
+                    }
+                }
+                else{
+                    System.out.println("esta registrado");
+                }
+            
+        }
+      
       return estudiantes;
     }
     public ArrayList<Curso> cursos_del_estudiante(Estudiante estudiante){

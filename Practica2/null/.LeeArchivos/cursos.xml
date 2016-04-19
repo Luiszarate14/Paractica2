@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_05" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>if1300</string>
+   <object class="Modelo.Curso">
+    <void property="nombre">
+     <string>programacio</string>
+    </void>
+    <void property="numero_creditos">
+     <int>4</int>
+    </void>
+    <void property="sigla">
+     <string>if1300</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
