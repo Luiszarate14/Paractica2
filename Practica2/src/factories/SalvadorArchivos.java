@@ -8,6 +8,7 @@ package factories;
 import Modelo.Curso;
 import Modelo.Estudiante;
 import Modelo.Matricula;
+import Modelo.Profesor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,8 +21,10 @@ public interface SalvadorArchivos {
     void guardarEstudiante(ArrayList<Estudiante> estudiantes);
     void guardarCurso(HashMap<String, Curso> cursos);
     void guardarMatriculas(ArrayList<Matricula> matriculas);
+    void guardarProfesor(ArrayList<Profesor> profesores);
     ArrayList<Estudiante> obtenerEstudiante();
     HashMap<String, Curso> obtenerCurso();
-    ArrayList<Matricula> obtenerMatriculas();    
+    ArrayList<Matricula> obtenerMatriculas();
+    ArrayList<Profesor> obtenerProfesor();
     
 }

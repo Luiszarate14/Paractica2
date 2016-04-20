@@ -8,6 +8,7 @@ package factories;
 import Modelo.Curso;
 import Modelo.Estudiante;
 import Modelo.Matricula;
+import Modelo.Profesor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,6 +99,28 @@ public class SalvadorJson implements SalvadorArchivos{
             Logger.getLogger(SalvadorJson.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lector.read_json(filepath);         
+    }
+
+    @Override
+    public void guardarProfesor(ArrayList<Profesor> profesores) {
+         try {
+            escritor.writeObjectProfesorBin(ayudaos.get_config_file("profesore.json"), profesores);
+        } catch (IOException ex) {
+            Logger.getLogger(SalvadorJson.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public ArrayList<Profesor> obtenerProfesor() {
+       Lector<ArrayList<Profesor>> lector= new Lector<>();
+        String filePath=null;
+        try {
+            filePath= ayudaos.get_config_file("profesores.json");
+            
+        } catch (Exception e) {
+            System.out.println("no existe path . json");
+        }
+        return lector.read_Bin(filePath);
     }
     
 }

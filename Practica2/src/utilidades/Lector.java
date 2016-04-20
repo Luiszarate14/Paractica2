@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +27,7 @@ import java.util.logging.Logger;
 public class Lector <T> {
     
     BufferedReader br;
-    
+    ObjectInputStream lectorBin;
     private String read_file_with_throws(String filepath) throws FileNotFoundException, IOException{
         br = new BufferedReader(new FileReader(filepath));
         StringBuilder sb = new StringBuilder();
@@ -55,6 +57,19 @@ public class Lector <T> {
             }
         }
         return dev;
+    }
+    public T read_Bin (String filepath){
+         T  aux=null;
+        try {
+            lectorBin= new ObjectInputStream(new FileInputStream(filepath));
+            while(true){
+                aux= (T)lectorBin.readObject();//regresa el objeto
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println("No regreso el .dat");
+        }
+       
+        return aux;
     }
     
     

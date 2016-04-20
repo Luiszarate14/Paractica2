@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +26,8 @@ import java.util.logging.Logger;
 public class Escritor {
     
     FileWriter writer;
+    ObjectOutputStream salidaBin;
+
     private void write_with_throws(String filepath, String text) throws IOException{
         File file = new File(filepath);
         if(!file.exists()){
@@ -48,7 +53,16 @@ public class Escritor {
             }
         } 
     }
-    
+    public void writeObjectProfesorBin(String filePath,Object objeto){
+        try {
+            salidaBin=new ObjectOutputStream(new FileOutputStream(filePath));
+            salidaBin.writeObject(objeto);
+            System.out.println("creo archivo bin");
+        } catch (IOException ex) {
+            System.out.println("No creo archivo bin");
+        }
+    }
+    /////////////////////////////////////
     public void with_obj_in_file_json(String filepath, Object obj){
         //http://flexjson.sourceforge.net/#Serialization
         JSONSerializer serializer = new JSONSerializer();

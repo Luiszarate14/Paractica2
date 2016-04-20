@@ -13,11 +13,18 @@ public class SalvadorFactory {
     
     public SalvadorArchivos getSalvador(String formato){
         SalvadorArchivos salvador = null;
-        if(formato.equals("xml")){
-            salvador = new SalvadorXML();
-            
-        }else if(formato.equals("json")){
-            salvador = new SalvadorJson();
+        switch (formato) {
+            case "xml":
+                salvador = new SalvadorXML();
+                break;
+            case "json":
+                salvador = new SalvadorJson();
+                break;
+            case ".dat":
+                salvador = new SalvadorBinario();
+                break;
+            default:
+                break;
         }
         return salvador;
     }

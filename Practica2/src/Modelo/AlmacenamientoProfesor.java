@@ -17,6 +17,9 @@ public class AlmacenamientoProfesor {
     public AlmacenamientoProfesor() {
         arregloProfesor= new ArrayList<Profesor>();
     }
+    public void setProfesores(ArrayList<Profesor> profesor){
+        arregloProfesor=profesor;
+    }
     public void agregarProfesor(Profesor profesor){
         if(!verificar(profesor.getCedula())){
             arregloProfesor.add(profesor);
@@ -51,6 +54,9 @@ public class AlmacenamientoProfesor {
                 arregloProfesor.remove(i);
             }
          }
+    }
+    public ArrayList<Profesor> getArregloProfesor(){
+        return arregloProfesor;
     }
     
 }
