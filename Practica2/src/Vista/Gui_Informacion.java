@@ -11,13 +11,13 @@ import Modelo.DBEstudiante;
  *
  * @author Luisza
  */
-public class GuiBuscarEstudiante extends javax.swing.JFrame {
+public class Gui_Informacion extends javax.swing.JFrame {
 
    private DBEstudiante regis;
     /**
      * Creates new form GuiBuscarEstudiante
      */
-    public GuiBuscarEstudiante( ) {
+    public Gui_Informacion( ) {
         
         initComponents();
         setLocationRelativeTo(null);

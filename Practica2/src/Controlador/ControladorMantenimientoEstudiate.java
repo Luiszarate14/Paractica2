@@ -8,7 +8,7 @@ package Controlador;
 import Modelo.Estudiante;
 import Modelo.DBEstudiante;
 import Modelo.EstudianteException;
-import Vista.GuiBuscarEstudiante;
+import Vista.Gui_Informacion;
 import Vista.ManipulaEstudiantes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,12 +38,12 @@ public class ControladorMantenimientoEstudiate implements ActionListener {
 
     private Estudiante estudiante;
     private DBEstudiante db;
-    private GuiBuscarEstudiante guiBuscarEstudiante;
+    private Gui_Informacion guiBuscarEstudiante;
 
     public ControladorMantenimientoEstudiate(ManipulaEstudiantes manipulaEstudiantes, DBEstudiante db) {
         this.manipulaEstudiantes = manipulaEstudiantes;
         this.db = db;
-        this.guiBuscarEstudiante = new GuiBuscarEstudiante();
+        this.guiBuscarEstudiante = new Gui_Informacion();
 
     }
 

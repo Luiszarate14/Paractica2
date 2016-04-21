@@ -10,9 +10,10 @@ package Modelo;
  * @author user
  */
 public class Profesor {
-    private String nombre,cedula,correo,horario;
+    private String nombre,cedula,correo;
+    private int horario;
 
-    public Profesor(String nombre, String cedula, String correo, String horario) {
+    public Profesor(String nombre, String cedula, String correo, int horario) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.correo = correo;
@@ -43,12 +44,15 @@ public class Profesor {
         this.correo = correo;
     }
 
-    public String getHorario() {
+    public int getHorario() {
         return horario;
     }
 
-    public void setHorario(String horario) {
+    public void setHorario(int horario) {
         this.horario = horario;
+    }
+    public String getInformacion(){
+        return "Nombre: " +nombre+" Cedula: "+ cedula+" Correo: "+ correo+"  Horario: " + horario;
     }
     
 }

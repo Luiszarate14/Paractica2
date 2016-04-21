@@ -20,10 +20,13 @@ public class AlmacenamientoProfesor {
     public void setProfesores(ArrayList<Profesor> profesor){
         arregloProfesor=profesor;
     }
-    public void agregarProfesor(Profesor profesor){
+    public boolean agregarProfesor(Profesor profesor){
+        boolean guardo=false;
         if(!verificar(profesor.getCedula())){
             arregloProfesor.add(profesor);
+            guardo =true;
         }
+        return guardo;
     }
     public boolean verificar(String cedula){
         boolean existeEstudiante=false;
@@ -54,6 +57,16 @@ public class AlmacenamientoProfesor {
                 arregloProfesor.remove(i);
             }
          }
+    }
+    public String getiInformacion(String cedula){
+        String cadena="";
+        for(int i=0;i<arregloProfesor.size();i++){
+            if(arregloProfesor.get(i).getCedula().equals(cedula)){
+                cadena=arregloProfesor.get(i).getInformacion();
+                i=arregloProfesor.size();
+            }
+        }
+        return cadena;
     }
     public ArrayList<Profesor> getArregloProfesor(){
         return arregloProfesor;
