@@ -32,6 +32,12 @@
                 <Property name="text" type="java.lang.String" value="XML"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jm_Binario">
+              <Properties>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Binario"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
@@ -64,6 +70,11 @@
             <MenuItem class="javax.swing.JMenuItem" name="mantenercurso">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mantener Curso"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jm_Profe">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mantenimiento Profesor"/>
               </Properties>
             </MenuItem>
           </SubComponents>

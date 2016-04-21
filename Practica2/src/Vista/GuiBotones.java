@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.ControlCurso;
 import Controlador.ControladorMantenimientoEstudiate;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -91,7 +92,7 @@ public class GuiBotones extends javax.swing.JPanel {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBuscarActionPerformed
-     public void agregarEvento(ControladorMantenimientoEstudiate me){
+     public void agregarEvento(ActionListener me){
          this.botoAgregar.addActionListener(me);
          this.botonBuscar.addActionListener(me);
          this.botonEdditar.addActionListener(me);

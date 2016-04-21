@@ -5,12 +5,14 @@
  */
 package Controlador;
 
+import Modelo.AlmacenamientoProfesor;
 import Modelo.ConfigManager;
 import Modelo.DBCurso;
 import Modelo.Estudiante;
 import Modelo.DBEstudiante;
 import Modelo.DBMatricula;
 import Vista.ConsultaEstudiantes;
+import Vista.Gui_Profesores;
 import Vista.ManipulaCurso;
 import Vista.ManipulaEstudiantes;
 import Vista.ReporteEstudiante;
@@ -35,7 +37,8 @@ public class ControlVentanaPrincipal implements ActionListener {
     private ManipulaCurso manipulaCurso;
     private DBMatricula dbMatricula;
     private ConfigManager config_manager;
-
+    private Gui_Profesores ventanaProfe;
+    private AlmacenamientoProfesor dbProfe;
     public ControlVentanaPrincipal() {
 
         dbEstudiante = new DBEstudiante();
@@ -44,7 +47,8 @@ public class ControlVentanaPrincipal implements ActionListener {
         config_manager = ConfigManager.getInstance();
         config_manager.load_config();
         cargar_de_disco();
-        
+        dbProfe= new AlmacenamientoProfesor();
+        ventanaProfe= new Gui_Profesores(dbProfe);
     }
 
     private void cargar_de_disco(){
@@ -100,12 +104,19 @@ public class ControlVentanaPrincipal implements ActionListener {
            );
            this.manipulaCurso.setVisible(true);
        }else
+        if (e.getActionCommand().equalsIgnoreCase("Mantenimiento Profesor")) {
+            ventanaProfe.setVisible(true);
+        }else
         if(e.getActionCommand().equalsIgnoreCase("XML")){
             this.config_manager.setProperty("formato", "xml");
             guardar_en_disco();
         }else
         if(e.getActionCommand().equalsIgnoreCase("json")){
             this.config_manager.setProperty("formato", "json");
+            guardar_en_disco();
+        }else
+        if(e.getActionCommand().equalsIgnoreCase("Binario")){
+            this.config_manager.setProperty("formato", "dat");
             guardar_en_disco();
         }
     }
@@ -119,6 +130,7 @@ public class ControlVentanaPrincipal implements ActionListener {
         salvador.guardarCurso(dbCurso.getDb());
         salvador.guardarEstudiante(dbEstudiante.getArregloEstudiante());
         salvador.guardarMatriculas(dbMatricula.getMatriculas());
+        //salvador.guardarProfesor();
     }
     
 }

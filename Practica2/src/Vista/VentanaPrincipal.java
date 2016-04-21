@@ -34,10 +34,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.mantenercurso.addActionListener(cVentanaPrincipal);
         this.jbxml.addActionListener(cVentanaPrincipal);
         this.jbjson.addActionListener(cVentanaPrincipal);
-        
+        this.jm_Binario.addActionListener(cVentanaPrincipal);
+        this.jm_Profe.addActionListener(cVentanaPrincipal);
         ButtonGroup group = new ButtonGroup();
         group.add(this.jbjson);
         group.add(this.jbxml);
+        group.add(this.jm_Binario);
         String formato;
         formato = ConfigManager.getInstance().getProperty("formato");
         System.err.println(formato);
@@ -47,6 +49,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     break;
                 case "json":
                     this.jbjson.setSelected(true);
+                    break;
+                case "dat":
+                    this.jm_Binario.setSelected(true);
                     break;
                 default: 
                     this.jbjson.setSelected(true);
@@ -75,12 +80,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JMenuItem();
         jbjson = new javax.swing.JRadioButtonMenuItem();
         jbxml = new javax.swing.JRadioButtonMenuItem();
+        jm_Binario = new javax.swing.JRadioButtonMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jtManipulaEstudiante = new javax.swing.JMenuItem();
         reporteEstudiantes = new javax.swing.JMenuItem();
         consultaEstudiantes = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mantenercurso = new javax.swing.JMenuItem();
+        jm_Profe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +112,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jbxml.setText("XML");
         jMenu1.add(jbxml);
 
+        jm_Binario.setSelected(true);
+        jm_Binario.setText("Binario");
+        jMenu1.add(jm_Binario);
+
         menuEstudiante.add(jMenu1);
 
         jMenu2.setText("Estudiantes");
@@ -124,6 +135,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         mantenercurso.setText("Mantener Curso");
         jMenu3.add(mantenercurso);
+
+        jm_Profe.setText("Mantenimiento Profesor");
+        jMenu3.add(jm_Profe);
 
         menuEstudiante.add(jMenu3);
 
@@ -197,6 +211,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JRadioButtonMenuItem jbjson;
     private javax.swing.JRadioButtonMenuItem jbxml;
+    private javax.swing.JRadioButtonMenuItem jm_Binario;
+    private javax.swing.JMenuItem jm_Profe;
     private javax.swing.JMenuItem jtManipulaEstudiante;
     private javax.swing.JMenuItem mantenercurso;
     private javax.swing.JMenuBar menuEstudiante;
