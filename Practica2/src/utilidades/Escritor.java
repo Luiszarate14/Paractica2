@@ -13,6 +13,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +25,9 @@ import java.util.logging.Logger;
 public class Escritor {
     
     FileWriter writer;
+    private ObjectOutputStream oos;
+    private String nameOfFile;
+    
     private void write_with_throws(String filepath, String text) throws IOException{
         File file = new File(filepath);
         if(!file.exists()){
@@ -68,5 +73,45 @@ public class Escritor {
             Logger.getLogger(Escritor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public void with_obj_in_file_binario(String filepath, Object obj){
+       FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("profesores.txt");
+            pw = new PrintWriter(fichero);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+     public boolean openFile() {
+
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(nameOfFile));
+            return true;
+        } catch (IOException ex) {
+            System.out.println("Se genero un: FileNotFoundException");;
+            return false;
+        }
+
+    }
+
+    public void close() {
+        try {
+            oos.flush();
+            oos.close();
+        } catch (IOException ex) {
+            System.out.println("Se genero una IOException");
+        }
+    }
 }

@@ -18,6 +18,8 @@ public class SalvadorFactory {
             
         }else if(formato.equals("json")){
             salvador = new SalvadorJson();
+        } else if(formato.equals("txt")){
+            salvador = new SalvadorBinario();
         }
         return salvador;
     }

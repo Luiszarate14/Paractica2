@@ -6,13 +6,17 @@
 package Controlador;
 
 import Modelo.ConfigManager;
+import Modelo.DBAsignar;
 import Modelo.DBCurso;
 import Modelo.Estudiante;
 import Modelo.DBEstudiante;
 import Modelo.DBMatricula;
+import Modelo.DBProfesor;
 import Vista.ConsultaEstudiantes;
+import Vista.ManipulaAsignarCurso;
 import Vista.ManipulaCurso;
 import Vista.ManipulaEstudiantes;
+import Vista.ManipulaProfesor;
 import Vista.ReporteEstudiante;
 import factories.SalvadorArchivos;
 import factories.SalvadorFactory;
@@ -35,12 +39,18 @@ public class ControlVentanaPrincipal implements ActionListener {
     private ManipulaCurso manipulaCurso;
     private DBMatricula dbMatricula;
     private ConfigManager config_manager;
-
+    private ManipulaProfesor manipulaProfesor;
+    private DBProfesor dbp;
+    private DBAsignar dba;
+    private ManipulaAsignarCurso manipulaAsignar;
+    
     public ControlVentanaPrincipal() {
 
         dbEstudiante = new DBEstudiante();
         dbCurso = new DBCurso();
         dbMatricula = new DBMatricula();
+        dbp = new DBProfesor();
+        dba = new DBAsignar();
         config_manager = ConfigManager.getInstance();
         config_manager.load_config();
         cargar_de_disco();
@@ -55,6 +65,9 @@ public class ControlVentanaPrincipal implements ActionListener {
             dbEstudiante.setArregloEstudiante(salvador.obtenerEstudiante());
             dbCurso.setDb(salvador.obtenerCurso());
             dbMatricula.setMatriculas(salvador.obtenerMatriculas());
+            dbp.setProfesor(salvador.obtenerProfesor());
+            dba.setAsignacion(salvador.obtenerAsignacion());
+            
         }else{
             config_manager.setProperty("formato", "json");
         }
@@ -106,6 +119,17 @@ public class ControlVentanaPrincipal implements ActionListener {
         if(e.getActionCommand().equalsIgnoreCase("json")){
             this.config_manager.setProperty("formato", "json");
             guardar_en_disco();
+        }else if(e.getActionCommand().equalsIgnoreCase("txt")){
+            this.config_manager.setProperty("formato", "txt");
+            guardar_en_disco();
+        } else if(e.getActionCommand().equalsIgnoreCase("Registro Profesor")){
+            this.manipulaProfesor = new ManipulaProfesor(dbp);
+            ControlProfesor cp = new ControlProfesor(manipulaProfesor,dbp);
+            manipulaProfesor.agrega_acciones(cp);
+            manipulaProfesor.setVisible(true);
+        } else if(e.getActionCommand().equalsIgnoreCase("Asignar Curso")){
+            this.manipulaAsignar = new ManipulaAsignarCurso(dba);
+            manipulaAsignar.setVisible(true);
         }
     }
     
@@ -118,6 +142,8 @@ public class ControlVentanaPrincipal implements ActionListener {
         salvador.guardarCurso(dbCurso.getDb());
         salvador.guardarEstudiante(dbEstudiante.getArregloEstudiante());
         salvador.guardarMatriculas(dbMatricula.getMatriculas());
+        salvador.guardarProfesores(dbp.getProfesor());
+        salvador.guardarAsignacion(dba.getAsignacion());
     }
     
 }

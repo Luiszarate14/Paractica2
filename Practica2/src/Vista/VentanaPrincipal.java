@@ -34,10 +34,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.mantenercurso.addActionListener(cVentanaPrincipal);
         this.jbxml.addActionListener(cVentanaPrincipal);
         this.jbjson.addActionListener(cVentanaPrincipal);
+        this.jmenuprofe.addActionListener(cVentanaPrincipal);
+        this.jmenuasignar.addActionListener(cVentanaPrincipal);
+        this.menubinario.addActionListener(cVentanaPrincipal);
         
         ButtonGroup group = new ButtonGroup();
         group.add(this.jbjson);
         group.add(this.jbxml);
+        group.add(this.menubinario);
         String formato;
         formato = ConfigManager.getInstance().getProperty("formato");
         System.err.println(formato);
@@ -47,6 +51,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     break;
                 case "json":
                     this.jbjson.setSelected(true);
+                    break;
+                case "txt":
+                    this.menubinario.setSelected(true);
                     break;
                 default: 
                     this.jbjson.setSelected(true);
@@ -75,12 +82,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JMenuItem();
         jbjson = new javax.swing.JRadioButtonMenuItem();
         jbxml = new javax.swing.JRadioButtonMenuItem();
+        menubinario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jtManipulaEstudiante = new javax.swing.JMenuItem();
         reporteEstudiantes = new javax.swing.JMenuItem();
         consultaEstudiantes = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mantenercurso = new javax.swing.JMenuItem();
+        jmenuprofesor = new javax.swing.JMenu();
+        jmenuprofe = new javax.swing.JMenuItem();
+        jmenuasignar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +116,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jbxml.setText("XML");
         jMenu1.add(jbxml);
 
+        menubinario.setText("Binario");
+        menubinario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menubinarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menubinario);
+
         menuEstudiante.add(jMenu1);
 
         jMenu2.setText("Estudiantes");
@@ -126,6 +145,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3.add(mantenercurso);
 
         menuEstudiante.add(jMenu3);
+
+        jmenuprofesor.setText("Profesor");
+
+        jmenuprofe.setText("Registro Profesor");
+        jmenuprofe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuprofeActionPerformed(evt);
+            }
+        });
+        jmenuprofesor.add(jmenuprofe);
+
+        jmenuasignar.setText("Asignar Curso");
+        jmenuasignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuasignarActionPerformed(evt);
+            }
+        });
+        jmenuprofesor.add(jmenuasignar);
+
+        menuEstudiante.add(jmenuprofesor);
 
         setJMenuBar(menuEstudiante);
 
@@ -152,6 +191,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void jmenuprofeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuprofeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmenuprofeActionPerformed
+
+    private void jmenuasignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuasignarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmenuasignarActionPerformed
+
+    private void menubinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menubinarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menubinarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,9 +248,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JRadioButtonMenuItem jbjson;
     private javax.swing.JRadioButtonMenuItem jbxml;
+    private javax.swing.JMenuItem jmenuasignar;
+    private javax.swing.JMenuItem jmenuprofe;
+    private javax.swing.JMenu jmenuprofesor;
     private javax.swing.JMenuItem jtManipulaEstudiante;
     private javax.swing.JMenuItem mantenercurso;
     private javax.swing.JMenuBar menuEstudiante;
+    private javax.swing.JMenuItem menubinario;
     private javax.swing.JMenuItem reporteEstudiantes;
     // End of variables declaration//GEN-END:variables
 }

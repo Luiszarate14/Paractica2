@@ -27,21 +27,20 @@ import utilidades.AyudanteOS;
 public class ConfigManager {
 
     // Me instancio solo una vez
-    private static ConfigManager cm = new ConfigManager();
+    private static ConfigManager cm = new ConfigManager();//singleton
 
     private Properties props;
     private AyudanteOS ayudaos;
 
-    private ConfigManager() {
+    private ConfigManager() {//constructor privado//SINGLETON
         // que sea privado previene que otros lo instancien
         props = new Properties();
         ayudaos = new AyudanteOS();
     }
 
-    public static ConfigManager getInstance() {
+    public static ConfigManager getInstance() {//SINGLETON
         // retorna la unica instancia
         return cm;
-
     }
 
     public String getProperty(String key) {

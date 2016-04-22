@@ -5,9 +5,11 @@
  */
 package factories;
 
+import Modelo.Asignacion;
 import Modelo.Curso;
 import Modelo.Estudiante;
 import Modelo.Matricula;
+import Modelo.Profesor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,6 +101,52 @@ public class SalvadorXML implements SalvadorArchivos{
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lector.read_xml(filepath);       
+    }
+
+    @Override
+    public void guardarProfesores(ArrayList<Profesor> profesores) {
+        try {
+            escritor.with_obj_in_file_xml(
+                    ayudaos.get_config_file("profesores.xml"),
+                    profesores);
+        } catch (IOException ex) {
+            Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public ArrayList<Profesor> obtenerProfesor() {
+        Lector<ArrayList<Profesor>> lector = new Lector();
+        String filepath = null;
+        try{
+            filepath = ayudaos.get_config_file("profesores.xml");
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        return lector.read_xml(filepath);
+    }
+
+    @Override
+    public void guardarAsignacion(ArrayList<Asignacion> asignacion) {
+          try {
+            escritor.with_obj_in_file_xml(
+                    ayudaos.get_config_file("profesores.xml"),
+                    asignacion);
+        } catch (IOException ex) {
+            Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public ArrayList<Asignacion> obtenerAsignacion() {
+        Lector<ArrayList<Asignacion>> lector = new Lector();
+        String filepath = null;
+        try{
+            filepath = ayudaos.get_config_file("profesores.xml");
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        return lector.read_xml(filepath);
     }
     
     

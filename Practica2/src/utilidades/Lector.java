@@ -10,10 +10,12 @@ import flexjson.JSONDeserializer;
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,11 +24,13 @@ import java.util.logging.Logger;
  *
  * @author luisza
  */
-public class Lector <T> {
-    
+public class Lector<T> {
+
     BufferedReader br;
-    
-    private String read_file_with_throws(String filepath) throws FileNotFoundException, IOException{
+    private ObjectInputStream ois;
+    private String nameOfFile;
+
+    private String read_file_with_throws(String filepath) throws FileNotFoundException, IOException {
         br = new BufferedReader(new FileReader(filepath));
         StringBuilder sb = new StringBuilder();
         String line = br.readLine();
@@ -37,17 +41,17 @@ public class Lector <T> {
             line = br.readLine();
         }
         return sb.toString();
-    
+
     }
-    
-    public String read_file(String filepath){
+
+    public String read_file(String filepath) {
         String dev = null;
         try {
             dev = read_file_with_throws(filepath);
         } catch (IOException ex) {
             System.out.println(ex.toString());
             Logger.getLogger(Lector.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             try {
                 br.close();
             } catch (IOException ex) {
@@ -56,25 +60,24 @@ public class Lector <T> {
         }
         return dev;
     }
-    
-    
-    public T read_json(String filepath){
+
+    public T read_json(String filepath) {
         //http://flexjson.sourceforge.net/#Deserialization
         String text = this.read_file(filepath);
         T objs = new JSONDeserializer<T>().deserialize(text);
-        
+
         return objs;
     }
-    
-    public T read_xml(String filepath){
-       // https://docs.oracle.com/javase/7/docs/api/java/beans/XMLDecoder.html
-       XMLDecoder d;
-       T  objs=null;
+
+    public T read_xml(String filepath) {
+        // https://docs.oracle.com/javase/7/docs/api/java/beans/XMLDecoder.html
+        XMLDecoder d;
+        T objs = null;
         try {
             d = new XMLDecoder(
                     new BufferedInputStream(
                             new FileInputStream(filepath)));
-            
+
             objs = (T) d.readObject();
             d.close();
         } catch (FileNotFoundException ex) {
@@ -82,5 +85,31 @@ public class Lector <T> {
         }
 
         return objs;
+    }
+    //String nameOfFile;
+
+    public T read_binario(String filepath) throws IOException, ClassNotFoundException {
+
+        return (T) ois.readObject();
+
+    }
+
+    public boolean openFile() {
+          try {
+            ois = new ObjectInputStream(new FileInputStream(nameOfFile));
+            return true;
+        } catch (IOException ex) {
+            System.err.println("Se genera un error de tipo IOException en el metodo readObject");
+            return false;
+
+        }
+    }
+
+    public void close() {
+        try {
+            ois.close();
+        } catch (IOException ex) {
+            System.out.println("Se genero un: IOException");
+        }
     }
 }

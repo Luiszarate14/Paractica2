@@ -14,24 +14,28 @@ public class Curso {
     private String nombre;
     private int numero_creditos;
     private int cantidad_estudiantes;
-
+    private int numeroHoras;
     
     public Curso(String sigla, String nombre, int numero_creditos) {
         this.sigla = sigla;
         this.nombre = nombre;
         this.numero_creditos = numero_creditos;
         cantidad_estudiantes = 0;
+        this.numeroHoras = 8;
     }
 
     public Curso() {
     }
-    
+    public Curso(String sigla, int horas){
+        this.sigla = sigla;
+        this.numeroHoras = 8;
+    }
     
     public void incrementa_cantidad_estudiantes(){
         cantidad_estudiantes++;
     }
     public void decrementa_cantidad_estudiantes(){
-        cantidad_estudiantes++;
+        cantidad_estudiantes--;
     }
 
     public String getSigla() {
@@ -65,5 +69,15 @@ public class Curso {
     public void setCantidad_estudiantes(int cantidad_estudiantes) {
         this.cantidad_estudiantes = cantidad_estudiantes;
     }
-    
+
+    public int getNumeroHoras() {
+        return numeroHoras;
+    }
+
+    public void setNumeroHoras(int numeroHoras) {
+        this.numeroHoras = numeroHoras;
+    }
+    public void sumarHoras(){
+        numeroHoras++;
+    }
 }

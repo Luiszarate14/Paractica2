@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.ControlCurso;
+import Controlador.ControlProfesor;
 import Controlador.ControladorMantenimientoEstudiate;
 
 /**
@@ -105,6 +106,12 @@ public class GuiBotones extends javax.swing.JPanel {
          this.botonEdditar.addActionListener(me);
          this.botonEliminar.addActionListener(me);
      }
+     public void agregarEventoP(ControlProfesor me){
+         this.botoAgregar.addActionListener(me);
+         this.botonBuscar.addActionListener(me);
+         this.botonEdditar.addActionListener(me);
+         this.botonEliminar.addActionListener(me);
+     }
          
      public int getCodigoPorFuente(Object object){
          int dev=0;
@@ -126,6 +133,23 @@ public class GuiBotones extends javax.swing.JPanel {
      
      
      public int getCodigoPorFuenteCurso(Object object){
+         int dev=0;
+         
+         if(this.botoAgregar.equals(object)){
+             dev=ControlCurso.AGREGAR;
+         }else if(this.botonBuscar.equals(object)){
+             dev=ControlCurso.BUSCAR;
+            
+         }else if (this.botonEdditar.equals(object)) {
+             dev=ControlCurso.EDITAR;
+             
+        }else if(this.botonEliminar.equals(object)){
+            dev=ControlCurso.ELIMINAR;
+            
+        }
+         return dev;
+     }
+     public int getCodigoPorFuenteProfesor(Object object){
          int dev=0;
          
          if(this.botoAgregar.equals(object)){
