@@ -18,10 +18,11 @@ public class AyudanteOS {
     
     public Path get_config_dir() throws IOException {
         // Se asegura que siempre exista el directorio de configuracion
-        Path path = FileSystems.getDefault().getPath(System.getProperty("user.user"), ".LeeArchivos");
+        Path path = FileSystems.getDefault().getPath(System.getProperty("user.home"), ".LeeArchivos");
         if (!Files.isDirectory(path)) {
             Files.createDirectories(path);
         }
+        
         return path;
     }
     

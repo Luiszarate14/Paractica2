@@ -23,7 +23,9 @@ public class DBCurso {
     }
 
     public void setDb(HashMap<String, Curso> db) {
-        this.db = db;
+        if(db!=null){
+            this.db = db;
+        }
     }
     
     

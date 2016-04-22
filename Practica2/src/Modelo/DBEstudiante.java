@@ -17,12 +17,13 @@ public class DBEstudiante {
     private String matrizDatos[][];
 
     public DBEstudiante() {
-
         this.arregloEstudiante = new ArrayList<Estudiante>();
     }
 
     public void setArregloEstudiante(ArrayList<Estudiante> arregloEstudiante) {
-        this.arregloEstudiante = arregloEstudiante;
+        if(arregloEstudiante!=null){
+            this.arregloEstudiante = arregloEstudiante;
+        }
     }
 
     public String agregarEstudiante(Estudiante estudiante) throws EstudianteException {

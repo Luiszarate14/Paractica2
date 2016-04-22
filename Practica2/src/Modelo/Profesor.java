@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author user
  */
-public class Profesor {
+public class Profesor implements java.io.Serializable{
     private String nombre,cedula,correo;
     private int horario;
 
@@ -54,5 +54,4 @@ public class Profesor {
     public String getInformacion(){
         return "Nombre: " +nombre+" Cedula: "+ cedula+" Correo: "+ correo+"  Horario: " + horario;
     }
-    
 }

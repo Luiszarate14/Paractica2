@@ -53,7 +53,7 @@ public class Escritor {
             }
         } 
     }
-    public void writeObjectProfesorBin(String filePath,Object objeto){
+    public void writeObjectBin(String filePath,Object objeto){
         try {
             salidaBin=new ObjectOutputStream(new FileOutputStream(filePath));
             salidaBin.writeObject(objeto);

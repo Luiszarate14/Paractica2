@@ -18,7 +18,9 @@ public class AlmacenamientoProfesor {
         arregloProfesor= new ArrayList<Profesor>();
     }
     public void setProfesores(ArrayList<Profesor> profesor){
-        arregloProfesor=profesor;
+        if(profesor!=null){
+            arregloProfesor=profesor;
+        }
     }
     public boolean agregarProfesor(Profesor profesor){
         boolean guardo=false;

@@ -20,7 +20,9 @@ public class DBMatricula {
     }
 
     public void setMatriculas(ArrayList<Matricula> matriculas) {
-        this.matriculas = matriculas;
+        if(matriculas!=null){
+            this.matriculas = matriculas;
+        }
     }
 
     public Matricula obtener_matricula(String carnet, String sigla){

@@ -68,13 +68,16 @@ public class SalvadorJson implements SalvadorArchivos{
     @Override
     public ArrayList<Estudiante> obtenerEstudiante() {
         Lector<ArrayList<Estudiante>> lector = new Lector<>();
+            ArrayList<Estudiante> estudiante=null;
         String filepath=null;
         try {
             filepath = ayudaos.get_config_file("estudiantes.json");
+            estudiante=lector.read_json(filepath);
+
         } catch (IOException ex) {
             Logger.getLogger(SalvadorJson.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return lector.read_json(filepath);
+        return estudiante ;
     }
 
     @Override
@@ -104,7 +107,7 @@ public class SalvadorJson implements SalvadorArchivos{
     @Override
     public void guardarProfesor(ArrayList<Profesor> profesores) {
          try {
-            escritor.writeObjectProfesorBin(ayudaos.get_config_file("profesore.json"), profesores);
+            escritor.with_obj_in_file_json(ayudaos.get_config_file("profesore.json"), profesores);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorJson.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,12 +118,12 @@ public class SalvadorJson implements SalvadorArchivos{
        Lector<ArrayList<Profesor>> lector= new Lector<>();
         String filePath=null;
         try {
-            filePath= ayudaos.get_config_file("profesores.json");
+            filePath= ayudaos.get_config_file("profesore.json");
             
         } catch (Exception e) {
             System.out.println("no existe path . json");
         }
-        return lector.read_Bin(filePath);
+        return lector.read_json(filePath);
     }
     
 }

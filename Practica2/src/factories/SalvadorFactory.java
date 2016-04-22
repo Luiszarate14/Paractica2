@@ -20,7 +20,7 @@ public class SalvadorFactory {
             case "json":
                 salvador = new SalvadorJson();
                 break;
-            case ".dat":
+            case "dat":                
                 salvador = new SalvadorBinario();
                 break;
             default:

@@ -43,11 +43,11 @@ public class ControlVentanaPrincipal implements ActionListener {
 
         dbEstudiante = new DBEstudiante();
         dbCurso = new DBCurso();
+        dbProfe= new AlmacenamientoProfesor();
         dbMatricula = new DBMatricula();
         config_manager = ConfigManager.getInstance();
         config_manager.load_config();
         cargar_de_disco();
-        dbProfe= new AlmacenamientoProfesor();
         ventanaProfe= new Gui_Profesores(dbProfe);
     }
 
@@ -55,10 +55,13 @@ public class ControlVentanaPrincipal implements ActionListener {
         SalvadorFactory sf = new SalvadorFactory();
         String formato = config_manager.getProperty("formato");
         SalvadorArchivos salvador = sf.getSalvador(formato);
+        System.out.println("inicio"+config_manager.getProperty("formato"));
+        
         if(salvador!= null){
             dbEstudiante.setArregloEstudiante(salvador.obtenerEstudiante());
             dbCurso.setDb(salvador.obtenerCurso());
             dbMatricula.setMatriculas(salvador.obtenerMatriculas());
+            dbProfe.setProfesores(salvador.obtenerProfesor());
         }else{
             config_manager.setProperty("formato", "json");
         }
@@ -69,6 +72,7 @@ public class ControlVentanaPrincipal implements ActionListener {
         if (e.getActionCommand().equalsIgnoreCase("Salir")) {
             config_manager.save_config();
             guardar_en_disco();
+            System.out.println("final"+config_manager.getProperty("formato"));
             System.exit(0);
         }else
 
@@ -126,11 +130,11 @@ public class ControlVentanaPrincipal implements ActionListener {
     }
     private void guardar_en_archivo(String formato){
         SalvadorFactory sf = new SalvadorFactory();
-        SalvadorArchivos salvador = sf.getSalvador(formato);
+        SalvadorArchivos salvador = sf.getSalvador(formato);//error en la siguiente linea
         salvador.guardarCurso(dbCurso.getDb());
         salvador.guardarEstudiante(dbEstudiante.getArregloEstudiante());
         salvador.guardarMatriculas(dbMatricula.getMatriculas());
-        //salvador.guardarProfesor();
+        salvador.guardarProfesor(dbProfe.getArregloProfesor());
     }
     
 }

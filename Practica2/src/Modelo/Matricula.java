@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author luisza
  */
-public class Matricula {
+public class Matricula implements java.io.Serializable {
     private String curso;  // Sigla del curso
     private String estudiante; // Carnet de estudiante
 

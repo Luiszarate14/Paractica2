@@ -105,7 +105,7 @@ public class SalvadorXML implements SalvadorArchivos{
     @Override
     public void guardarProfesor(ArrayList<Profesor> profesores) {
          try {
-            escritor.writeObjectProfesorBin(ayudaos.get_config_file("profesore.xml"), profesores);
+            escritor.with_obj_in_file_xml(ayudaos.get_config_file("profesore.xml"), profesores);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,12 +116,12 @@ public class SalvadorXML implements SalvadorArchivos{
         Lector<ArrayList<Profesor>> lector= new Lector<>();
         String filePath=null;
         try {
-            filePath= ayudaos.get_config_file("profesores.xml");
+            filePath= ayudaos.get_config_file("profesore.xml");
             
         } catch (Exception e) {
             System.out.println("no existe path . xml");
         }
-        return lector.read_Bin(filePath);
+        return lector.read_xml(filePath);
     }
     
     

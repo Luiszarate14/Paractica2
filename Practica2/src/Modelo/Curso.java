@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author luisza
  */
-public class Curso {
+public class Curso implements java.io.Serializable{
     private String sigla;
     private String nombre;
     private int numero_creditos;
