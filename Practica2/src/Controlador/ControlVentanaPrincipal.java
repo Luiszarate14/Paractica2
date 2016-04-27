@@ -117,10 +117,12 @@ public class ControlVentanaPrincipal implements ActionListener {
             this.manipulaAsignar = new ManipulaAsignarCurso(dba);
             this.manipulaAsignar.set_Profesores(this.dbp.getProfesor());
             manipulaAsignar.setVisible(true);
+            
         }else if(e.getActionCommand().equalsIgnoreCase("XML")){
             this.config_manager.setProperty("formato", "xml");
             guardar_en_disco();
         }else
+            
         if(e.getActionCommand().equalsIgnoreCase("json")){
             this.config_manager.setProperty("formato", "json");
             guardar_en_disco();
