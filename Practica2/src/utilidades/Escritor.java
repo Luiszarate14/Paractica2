@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,8 +24,6 @@ import java.util.logging.Logger;
 public class Escritor {
     
     FileWriter writer;
-    private ObjectOutputStream oos;
-    private String nameOfFile;
     
     private void write_with_throws(String filepath, String text) throws IOException{
         File file = new File(filepath);
@@ -56,6 +53,7 @@ public class Escritor {
     
     public void with_obj_in_file_json(String filepath, Object obj){
         //http://flexjson.sourceforge.net/#Serialization
+        System.out.println("IMPRESION DE ESCRITOR: "+filepath);
         JSONSerializer serializer = new JSONSerializer();
         write_file(filepath, serializer.serialize( obj ));
     }
@@ -73,45 +71,18 @@ public class Escritor {
             Logger.getLogger(Escritor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void with_obj_in_file_binario(String filepath, Object obj){
-       FileWriter fichero = null;
-        PrintWriter pw = null;
-        try
-        {
-            fichero = new FileWriter("profesores.txt");
-            pw = new PrintWriter(fichero);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-           try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
-           if (null != fichero)
-              fichero.close();
-           } catch (Exception e2) {
-              e2.printStackTrace();
-           }
-        }
+    private void with_obj_in_file_binario(String filepath, Object obj) throws FileNotFoundException, IOException{
+     FileOutputStream file = new FileOutputStream(filepath);
+     ObjectOutputStream oos = new ObjectOutputStream(file);
+     oos.writeObject(obj);
+     oos.close();
+     
     }
-     public boolean openFile() {
-
+    public void escribeBinario(String filepath, Object obj){
         try {
-            oos = new ObjectOutputStream(new FileOutputStream(nameOfFile));
-            return true;
+            with_obj_in_file_binario(filepath, obj);
         } catch (IOException ex) {
-            System.out.println("Se genero un: FileNotFoundException");;
-            return false;
-        }
-
-    }
-
-    public void close() {
-        try {
-            oos.flush();
-            oos.close();
-        } catch (IOException ex) {
-            System.out.println("Se genero una IOException");
+            Logger.getLogger(Escritor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

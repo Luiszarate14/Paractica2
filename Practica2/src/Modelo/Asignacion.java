@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author Silvia Araya J
  */
-public class Asignacion {
+public class Asignacion implements java.io.Serializable{
     private Profesor profe;
     private Curso curso;
     

@@ -36,7 +36,7 @@ public class ControlProfesor implements ActionListener{
         try {
             int codigo = this.manipulaProfesor.getCodigoPorFuenteProfesor(e.getSource());
             Profesor profesor;
-            String cedula;
+            String cedula = " ";
             switch(codigo){
                 case AGREGAR: profesor = this.manipulaProfesor.datosLlenos();
                 profesor = new Profesor(this.manipulaProfesor.getNombre(), this.manipulaProfesor.getCedula(),
@@ -46,7 +46,7 @@ public class ControlProfesor implements ActionListener{
                 this.manipulaProfesor.limpiarText();
                 break;
                 case MODIFICAR: cedula = this.manipulaProfesor.getCedula();
-                profesor = dbp.buscarProfe(manipulaProfesor.getCedula());
+                profesor = dbp.buscarProfe(cedula);
                  if (profesor == null) {
                     throw new ProfesorException(
                             "No se encontró el profesor");

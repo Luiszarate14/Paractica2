@@ -36,8 +36,8 @@ public class SalvadorBinario implements SalvadorArchivos{
     @Override
     public void guardarEstudiante(ArrayList<Estudiante> estudiantes) {
         try {
-            escritor.with_obj_in_file_binario(
-                    ayudaos.get_config_file("estudiantes.txt"),
+            escritor.escribeBinario(
+                    ayudaos.get_config_file("estudiantes.bin"),
                     estudiantes);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,8 +47,8 @@ public class SalvadorBinario implements SalvadorArchivos{
     @Override
     public void guardarCurso(HashMap<String, Curso> cursos) {
         try {
-            escritor.with_obj_in_file_binario(
-                    ayudaos.get_config_file("cursos.txt"),
+            escritor.escribeBinario(
+                    ayudaos.get_config_file("cursos.bin"),
                     cursos);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,8 +59,8 @@ public class SalvadorBinario implements SalvadorArchivos{
     @Override
     public void guardarMatriculas(ArrayList<Matricula> matriculas) {
         try {
-            escritor.with_obj_in_file_binario(
-                    ayudaos.get_config_file("matriculas.txt"),
+            escritor.escribeBinario(
+                    ayudaos.get_config_file("matriculas.bin"),
                     matriculas);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,20 +72,11 @@ public class SalvadorBinario implements SalvadorArchivos{
         Lector<ArrayList<Estudiante>> lector = new Lector<>();
         String filepath=null;
         try {
-            filepath = ayudaos.get_config_file("estudiantes.txt");
+            filepath = ayudaos.get_config_file("estudiantes.bin");
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            lector.openFile();
-            return lector.read_binario(filepath);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return lector.read_binario(filepath);
     }
 
     @Override
@@ -93,19 +84,12 @@ public class SalvadorBinario implements SalvadorArchivos{
         Lector<HashMap<String, Curso>> lector = new Lector<>();
         String filepath=null;
         try {
-            filepath = ayudaos.get_config_file("cursos.txt");
+            filepath = ayudaos.get_config_file("cursos.bin");
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            lector.openFile();
-            return lector.read_binario(filepath);
-        } catch (IOException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return lector.read_binario(filepath);
+       
     }
 
     @Override
@@ -113,57 +97,41 @@ public class SalvadorBinario implements SalvadorArchivos{
         Lector<ArrayList<Matricula>> lector = new Lector<>();
         String filepath=null;
         try {
-            filepath = ayudaos.get_config_file("matriculas.txt");
+            filepath = ayudaos.get_config_file("matriculas.bin");
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {       
-            lector.openFile();
             return lector.read_binario(filepath);
-        } catch (IOException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+       
     }
 
-    @Override
     public void guardarProfesores(ArrayList<Profesor> profesores) {
         try {
-            escritor.with_obj_in_file_binario(
-                    ayudaos.get_config_file("profesores.txt"),
+            escritor.escribeBinario(ayudaos.get_config_file("profesor.bin"),
                     profesores);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @Override
     public ArrayList<Profesor> obtenerProfesor() {
+        Lector<ArrayList<Profesor>> lector = new Lector();
+        String filepath = null;
         try{
-            Lector<ArrayList<Profesor>> lector = new Lector();
-            String filepath = null;
-            try{
-                filepath = ayudaos.get_config_file("profesores.txt");
-            }catch(IOException ex){
-                System.out.println(ex.getMessage());
-            }
-            lector.openFile();
-            return lector.read_binario(filepath);
+            filepath = ayudaos.get_config_file("profesor.bin");
+            
         }catch(IOException ex){
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
-        return null;
+        return lector.read_binario(filepath);
+        
     }
 
     @Override
     public void guardarAsignacion(ArrayList<Asignacion> asignacion) {
         try {
-            escritor.with_obj_in_file_binario(
-                    ayudaos.get_config_file("asignacion.txt"),
+            escritor.escribeBinario(
+                    ayudaos.get_config_file("asignacion.bin"),
                     asignacion);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
@@ -172,21 +140,15 @@ public class SalvadorBinario implements SalvadorArchivos{
 
     @Override
     public ArrayList<Asignacion> obtenerAsignacion() {
-       try{
             Lector<ArrayList<Asignacion>> lector = new Lector();
             String filepath = null;
             try{
-                filepath = ayudaos.get_config_file("asignacion.txt");
+                filepath = ayudaos.get_config_file("asignacion.bin");
+                
             }catch(IOException ex){
                 System.out.println(ex.getMessage());
             }
-            lector.openFile();
             return lector.read_binario(filepath);
-        }catch(IOException ex){
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SalvadorBinario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        
     }
 }

@@ -7,9 +7,11 @@
 package Vista;
 
 import Controlador.ControlProfesor;
+import Controlador.Validador;
 import Modelo.DBProfesor;
 import Modelo.Profesor;
 import Modelo.ProfesorException;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,10 +23,12 @@ public class ManipulaProfesor extends javax.swing.JFrame {
      * Creates new form ManipulaProfesor
      */
     private ControlProfesor cp;
+    private Validador valida;
     
     public ManipulaProfesor(DBProfesor dbp) {
         initComponents();
         cp = new ControlProfesor(this, dbp);
+        valida = new Validador();
         this.guiBotones1.agregarEventoP(cp);
     }
     public int getCodigoPorFuenteProfesor(Object object) {
@@ -41,9 +45,14 @@ public class ManipulaProfesor extends javax.swing.JFrame {
         {
           throw new ProfesorException("Faltan datos por llenar");
         }
+        if(valida.validarHoras(this.txt_horas.getText()) && valida.validaEmail(this.txt_correo.getText()) 
+                && valida.validarCedula(this.txt_cedula.getText())){
         Profesor profe = new Profesor(this.txt_nombre.getText(),this.txt_cedula.getText(),
                 this.txt_correo.getText(), Integer.parseInt(this.txt_horas.getText()));
         return profe;
+        } else{
+            throw new ProfesorException("Error en las horas, el correo electronico, o la cedula digitada");
+        }
         }
         public void limpiarText(){
             this.txt_cedula.setText("");
@@ -65,6 +74,9 @@ public class ManipulaProfesor extends javax.swing.JFrame {
         }
         public String getHoras(){
             return this.txt_horas.getText();
+        }
+        public void set_profesor(ArrayList<Profesor> array){
+             array.add(new Profesor(getNombre(), getCedula(), getCorreo(), Integer.parseInt(getHoras())));
         }
     /**
      * This method is called from within the constructor to initialize the form.

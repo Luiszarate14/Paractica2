@@ -23,7 +23,9 @@ public class DBAsignar {
     }
 
     public void setAsignacion(ArrayList<Asignacion> asignacion) {
+        if(asignacion != null){
         this.asignacion = asignacion;
+        }
     }
     public void asignarCurso(Asignacion asignar) throws ProfesorException{
         if(ControlHoras()){

@@ -39,8 +39,8 @@ public class ControlVentanaPrincipal implements ActionListener {
     private ManipulaCurso manipulaCurso;
     private DBMatricula dbMatricula;
     private ConfigManager config_manager;
-    private ManipulaProfesor manipulaProfesor;
-    private DBProfesor dbp;
+    private ManipulaProfesor manipulaProfesor;//ventana profesors
+    private DBProfesor dbp;//almacemaniento profesores
     private DBAsignar dba;
     private ManipulaAsignarCurso manipulaAsignar;
     
@@ -51,10 +51,11 @@ public class ControlVentanaPrincipal implements ActionListener {
         dbMatricula = new DBMatricula();
         dbp = new DBProfesor();
         dba = new DBAsignar();
+        manipulaProfesor = new ManipulaProfesor(dbp);
         config_manager = ConfigManager.getInstance();
         config_manager.load_config();
         cargar_de_disco();
-        
+
     }
 
     private void cargar_de_disco(){
@@ -66,6 +67,7 @@ public class ControlVentanaPrincipal implements ActionListener {
             dbCurso.setDb(salvador.obtenerCurso());
             dbMatricula.setMatriculas(salvador.obtenerMatriculas());
             dbp.setProfesor(salvador.obtenerProfesor());
+            
             dba.setAsignacion(salvador.obtenerAsignacion());
             
         }else{
@@ -102,35 +104,30 @@ public class ControlVentanaPrincipal implements ActionListener {
         }else
        if(e.getActionCommand().equalsIgnoreCase("Mantener Curso")){
            this.manipulaCurso = new ManipulaCurso();
-           ControlCurso cc = new ControlCurso(manipulaCurso, 
-                                              dbCurso, 
-                                              dbMatricula,
-                                              dbEstudiante);
+           ControlCurso cc = new ControlCurso(manipulaCurso, dbCurso,dbMatricula,dbEstudiante);
            manipulaCurso.agrega_acciones(cc);
-           this.manipulaCurso.set_estudiantes(
-                this.dbEstudiante.getArregloEstudiante()
-           );
+           this.manipulaCurso.set_estudiantes(this.dbEstudiante.getArregloEstudiante());
            this.manipulaCurso.setVisible(true);
-       }else
-        if(e.getActionCommand().equalsIgnoreCase("XML")){
+       }else if(e.getActionCommand().equalsIgnoreCase("Registro Profesor")){
+           // this.manipulaProfesor = new ManipulaProfesor(dbp);
+            ControlProfesor cp = new ControlProfesor(manipulaProfesor,dbp);
+            manipulaProfesor.agrega_acciones(cp);
+            manipulaProfesor.setVisible(true);
+        } else if(e.getActionCommand().equalsIgnoreCase("Asignar Curso")){
+            this.manipulaAsignar = new ManipulaAsignarCurso(dba);
+            this.manipulaAsignar.set_Profesores(this.dbp.getProfesor());
+            manipulaAsignar.setVisible(true);
+        }else if(e.getActionCommand().equalsIgnoreCase("XML")){
             this.config_manager.setProperty("formato", "xml");
             guardar_en_disco();
         }else
         if(e.getActionCommand().equalsIgnoreCase("json")){
             this.config_manager.setProperty("formato", "json");
             guardar_en_disco();
-        }else if(e.getActionCommand().equalsIgnoreCase("txt")){
-            this.config_manager.setProperty("formato", "txt");
+        }else if(e.getActionCommand().equalsIgnoreCase("Binario")){
+            this.config_manager.setProperty("formato", "bin");
             guardar_en_disco();
-        } else if(e.getActionCommand().equalsIgnoreCase("Registro Profesor")){
-            this.manipulaProfesor = new ManipulaProfesor(dbp);
-            ControlProfesor cp = new ControlProfesor(manipulaProfesor,dbp);
-            manipulaProfesor.agrega_acciones(cp);
-            manipulaProfesor.setVisible(true);
-        } else if(e.getActionCommand().equalsIgnoreCase("Asignar Curso")){
-            this.manipulaAsignar = new ManipulaAsignarCurso(dba);
-            manipulaAsignar.setVisible(true);
-        }
+        } 
     }
     
     public void guardar_en_disco(){

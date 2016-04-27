@@ -15,10 +15,10 @@ public class SalvadorFactory {
         SalvadorArchivos salvador = null;
         if(formato.equals("xml")){
             salvador = new SalvadorXML();
-            
+           
         }else if(formato.equals("json")){
             salvador = new SalvadorJson();
-        } else if(formato.equals("txt")){
+        } else if(formato.equals("bin")){
             salvador = new SalvadorBinario();
         }
         return salvador;

@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,14 +28,14 @@ import java.util.logging.Logger;
 public class Lector<T> {
 
     BufferedReader br;
-    private ObjectInputStream ois;
-    private String nameOfFile;
-
+    ObjectInputStream lectorBin;
+    
     private String read_file_with_throws(String filepath) throws FileNotFoundException, IOException {
-        br = new BufferedReader(new FileReader(filepath));
+        //System.out.println("lector path metodo de clase lector: "+filepath);
+        
+        br = new BufferedReader(new FileReader(filepath));//aca se cae
         StringBuilder sb = new StringBuilder();
         String line = br.readLine();
-
         while (line != null) {
             sb.append(line);
             sb.append(System.lineSeparator());
@@ -49,12 +50,14 @@ public class Lector<T> {
         try {
             dev = read_file_with_throws(filepath);
         } catch (IOException ex) {
-            System.out.println(ex.toString());
-            Logger.getLogger(Lector.class.getName()).log(Level.SEVERE, null, ex);
+           // System.err.println("Archivo no exite "+ filepath);
+           // Logger.getLogger(Lector.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
+                if(br != null)
                 br.close();
-            } catch (IOException ex) {
+            } catch (IOException ex) 
+            {  
                 Logger.getLogger(Lector.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -63,9 +66,11 @@ public class Lector<T> {
 
     public T read_json(String filepath) {
         //http://flexjson.sourceforge.net/#Deserialization
+        T objs = null;
         String text = this.read_file(filepath);
-        T objs = new JSONDeserializer<T>().deserialize(text);
-
+        if(text!=null){
+            objs = new JSONDeserializer<T>().deserialize(text);
+        }
         return objs;
     }
 
@@ -88,28 +93,24 @@ public class Lector<T> {
     }
     //String nameOfFile;
 
-    public T read_binario(String filepath) throws IOException, ClassNotFoundException {
-
-        return (T) ois.readObject();
-
+    public T lectura(String filepath) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(filepath);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        T t = (T) ois.readObject();
+        return t;
     }
-
-    public boolean openFile() {
-          try {
-            ois = new ObjectInputStream(new FileInputStream(nameOfFile));
-            return true;
-        } catch (IOException ex) {
-            System.err.println("Se genera un error de tipo IOException en el metodo readObject");
-            return false;
-
-        }
-    }
-
-    public void close() {
+    public T read_binario(String filepath){
+         T  aux=null;
+         //System.out.println("path"+filepath);
         try {
-            ois.close();
-        } catch (IOException ex) {
-            System.out.println("Se genero un: IOException");
+            lectorBin= new ObjectInputStream(new FileInputStream(filepath));//errore verificar
+            
+                aux= (T)lectorBin.readObject();//regresa el objeto       
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println("No regreso el .bine");
         }
+        System.err.println("aux: "+aux);
+        return aux;
     }
+
 }

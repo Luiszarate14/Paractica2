@@ -52,7 +52,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 case "json":
                     this.jbjson.setSelected(true);
                     break;
-                case "txt":
+                case "bin":
                     this.menubinario.setSelected(true);
                     break;
                 default: 

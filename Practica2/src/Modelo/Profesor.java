@@ -10,7 +10,7 @@ package Modelo;
  *
  * @author Silvia Araya J
  */
-public class Profesor {
+public class Profesor implements java.io.Serializable{
     private String nombre;
     private String cedula;
     private String correo;
@@ -68,4 +68,5 @@ public class Profesor {
     public void incremetarHoras(){
         horarioDisponible++;
     }
+    
 }

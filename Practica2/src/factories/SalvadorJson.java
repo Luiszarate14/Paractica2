@@ -10,6 +10,7 @@ import Modelo.Curso;
 import Modelo.Estudiante;
 import Modelo.Matricula;
 import Modelo.Profesor;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,31 +106,36 @@ public class SalvadorJson implements SalvadorArchivos{
     @Override
     public void guardarProfesores(ArrayList<Profesor> profesores) {
         try {
-            escritor.with_obj_in_file_binario(
-                    ayudaos.get_config_file("profesores.json"),
-                    profesores);
+            escritor.with_obj_in_file_json(ayudaos.get_config_file("profesor.json"), profesores);
         } catch (IOException ex) {
-            Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalvadorJson.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public ArrayList<Profesor> obtenerProfesor() {
-        Lector<ArrayList<Profesor>> lector = new Lector();
-        String filepath = null;
-        try{
+        Lector<ArrayList<Profesor>> lector = new Lector<>();
+        String filepath=null;
+        ArrayList<Profesor> profs=null;
+       // System.out.println("Clase de Salavor Json Linea 118");
+        try {
             filepath = ayudaos.get_config_file("profesores.json");
-        }catch(IOException ex){
-            System.out.println(ex.getMessage());
-        }
-        return lector.read_json(filepath);
+                        
+            profs = lector.read_json(filepath);
+                        
+        } catch (IOException ex) {
+            Logger.getLogger(SalvadorJson.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        //System.out.println("Metodo de victor ObtenerProfesor clase SalvadorJason linea 138"+filepath);
+        return profs;
     }
+    
 
     @Override
     public void guardarAsignacion(ArrayList<Asignacion> asignacion) {
         try {
-            escritor.with_obj_in_file_binario(
-                    ayudaos.get_config_file("profesores.json"),
+            escritor.with_obj_in_file_json(
+                    ayudaos.get_config_file("asignacion.json"),
                     asignacion);
         } catch (IOException ex) {
             Logger.getLogger(SalvadorXML.class.getName()).log(Level.SEVERE, null, ex);
@@ -138,14 +144,15 @@ public class SalvadorJson implements SalvadorArchivos{
 
     @Override
     public ArrayList<Asignacion> obtenerAsignacion() {
-         Lector<ArrayList<Asignacion>> lector = new Lector();
-        String filepath = null;
-        try{
-            filepath = ayudaos.get_config_file("profesores.json");
-        }catch(IOException ex){
-            System.out.println(ex.getMessage());
+        Lector<ArrayList<Asignacion>> lector = new Lector<>();
+        String filepath=null;
+        ArrayList<Asignacion> asig=null;
+        try {
+            filepath = ayudaos.get_config_file("asignacion.json");
+            asig = lector.read_json(filepath);
+        } catch (Exception ex) {
+            Logger.getLogger(SalvadorJson.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return lector.read_json(filepath);
+        return asig;
     }
-    
 }

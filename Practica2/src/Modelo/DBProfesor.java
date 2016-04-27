@@ -16,15 +16,20 @@ public class DBProfesor {
     private ArrayList<Profesor> profesor;
 
     public DBProfesor() {
-        profesor = new ArrayList<>();
+        profesor = new ArrayList<Profesor>();
     }
 
     public ArrayList<Profesor> getProfesor() {
+        System.out.println(profesor);
         return profesor;
+        
     }
 
     public void setProfesor(ArrayList<Profesor> profesor) {
+       // System.out.println("set profesor");
+        if(profesor != null){
         this.profesor = profesor;
+        } 
     }
 
     public boolean verificarProfesor(Profesor profesores) {
@@ -114,4 +119,5 @@ public class DBProfesor {
         }
         return false;//tiene el horario compeleto
     }
+    
 }
