@@ -81,6 +81,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         consultaEstudiantes = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mantenercurso = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,9 +126,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Cursos");
 
         mantenercurso.setText("Mantener Curso");
+        mantenercurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mantenercursoActionPerformed(evt);
+            }
+        });
         jMenu3.add(mantenercurso);
 
         menuEstudiante.add(jMenu3);
+
+        jMenu5.setText("Profesor");
+
+        jMenuItem5.setText("Manipular Profesor");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem5);
+
+        jMenuItem1.setText("Asignar cursos a un Profesor");
+        jMenu5.add(jMenuItem1);
+
+        menuEstudiante.add(jMenu5);
 
         setJMenuBar(menuEstudiante);
 
@@ -152,6 +175,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void mantenercursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenercursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mantenercursoActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +226,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JRadioButtonMenuItem jbjson;
     private javax.swing.JRadioButtonMenuItem jbxml;
     private javax.swing.JMenuItem jtManipulaEstudiante;
