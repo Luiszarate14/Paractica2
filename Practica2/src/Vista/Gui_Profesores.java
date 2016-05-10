@@ -49,7 +49,7 @@ public class Gui_Profesores extends javax.swing.JFrame {
     public void setTxt_horario(String txt_horario) {
         this.txt_horario.setText(txt_horario);
     }
-
+ 
     public String getTxt_nombre() {
         return txt_nombre.getText();
     }

@@ -109,7 +109,7 @@ public class SalvadorBinario implements SalvadorArchivos{
         Lector<ArrayList<Profesor>> lector= new Lector<>();
         String filePath=null;
         try {
-            filePath= ayudaos.get_config_file("profesores.dat");
+            filePath= ayudaos.get_config_file("profesore.dat");
         } catch (Exception e) {
             System.out.println("no existe path . dat");
         }

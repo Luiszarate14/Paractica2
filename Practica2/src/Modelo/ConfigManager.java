@@ -41,7 +41,6 @@ public class ConfigManager {
     public static ConfigManager getInstance() {
         // retorna la unica instancia
         return cm;
-
     }
 
     public String getProperty(String key) {
@@ -51,8 +50,6 @@ public class ConfigManager {
     public void setProperty(String key, String value) {
         props.setProperty(key, value);
     }
-
-
 
     private String get_config_file() throws IOException {
         //Retorna el archivo de configuracion
@@ -72,7 +69,6 @@ public class ConfigManager {
         }
 
     }
-
     public void save_config() {
         // Guarda las configuraciones en un archivo de texto
         File configFile = null;

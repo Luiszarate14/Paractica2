@@ -36,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jbjson.addActionListener(cVentanaPrincipal);
         this.jm_Binario.addActionListener(cVentanaPrincipal);
         this.jm_Profe.addActionListener(cVentanaPrincipal);
+        this.jm_Horario.addActionListener(cVentanaPrincipal);
         ButtonGroup group = new ButtonGroup();
         group.add(this.jbjson);
         group.add(this.jbxml);
@@ -88,6 +89,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         mantenercurso = new javax.swing.JMenuItem();
         jm_Profe = new javax.swing.JMenuItem();
+        jm_Horario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,6 +140,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jm_Profe.setText("Mantenimiento Profesor");
         jMenu3.add(jm_Profe);
+
+        jm_Horario.setText("Matricula Horario");
+        jMenu3.add(jm_Horario);
 
         menuEstudiante.add(jMenu3);
 
@@ -212,6 +217,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jbjson;
     private javax.swing.JRadioButtonMenuItem jbxml;
     private javax.swing.JRadioButtonMenuItem jm_Binario;
+    private javax.swing.JMenuItem jm_Horario;
     private javax.swing.JMenuItem jm_Profe;
     private javax.swing.JMenuItem jtManipulaEstudiante;
     private javax.swing.JMenuItem mantenercurso;

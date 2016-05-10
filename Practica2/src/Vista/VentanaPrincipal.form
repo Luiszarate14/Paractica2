@@ -77,6 +77,11 @@
                 <Property name="text" type="java.lang.String" value="Mantenimiento Profesor"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jm_Horario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Matricula Horario"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
