@@ -18,8 +18,10 @@ import Vista.ManipulaEstudiantes;
 import Vista.ReporteEstudiante;
 import factories.SalvadorArchivos;
 import factories.SalvadorFactory;
+import factories.CrearXML2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -39,6 +41,7 @@ public class ControlVentanaPrincipal implements ActionListener {
     private ConfigManager config_manager;
     private Gui_Profesores ventanaProfe;
     private AlmacenamientoProfesor dbProfe;
+    private  CrearXML2 xml2;
     public ControlVentanaPrincipal() {
 
         dbEstudiante = new DBEstudiante();
@@ -49,8 +52,9 @@ public class ControlVentanaPrincipal implements ActionListener {
         config_manager.load_config();
         cargar_de_disco();
         ventanaProfe= new Gui_Profesores(dbProfe);
+        guardarXml2();
+        guardarXml2Estudiantes();
     }
-
     private void cargar_de_disco(){
         SalvadorFactory sf = new SalvadorFactory();
         String formato = config_manager.getProperty("formato");
@@ -74,11 +78,12 @@ public class ControlVentanaPrincipal implements ActionListener {
             guardar_en_disco();
             System.out.println("final"+config_manager.getProperty("formato"));
             System.exit(0);
+            guardarXml2();
+            guardarXml2Estudiantes();
         }else
 
         if (e.getActionCommand().equalsIgnoreCase("Manipular Estudiantes")) {
             this.manipulaEstudiantes = new ManipulaEstudiantes(dbEstudiante);
-            
             manipulaEstudiantes.show();
         }else
         if (e.getActionCommand().equalsIgnoreCase("Reporte Estudiantes")) {
@@ -124,7 +129,21 @@ public class ControlVentanaPrincipal implements ActionListener {
             guardar_en_disco();
         }
     }
-    
+    public void guardarXml2(){//xml 2 matricula
+        
+         xml2= new CrearXML2("matriculas2formato.xml");
+        xml2.guardarMatriculas(dbMatricula.getMatriculas());
+        System.out.println("ok");
+    }
+      public void guardarXml2Estudiantes(){///xml 2 studiante
+          Estudiante estudian= new Estudiante("Exder", "12345", "2345432");
+          ArrayList<Estudiante> est= new ArrayList<>();
+          xml2= new CrearXML2("estudiantes2XML.xml");
+        est.add(estudian);
+          System.out.println("ta"+est.size());
+        xml2.guardarEstudiante(dbEstudiante.getArregloEstudiante());
+        System.out.println("ok");
+    }
     public void guardar_en_disco(){
         guardar_en_archivo(this.config_manager.getProperty("formato"));
     }

@@ -10,9 +10,13 @@ package Modelo;
  * @author luisza
  */
 public class Curso implements java.io.Serializable{
+    @InterfaceAnotacion
     private String sigla;
+    @InterfaceAnotacion
     private String nombre;
+    @InterfaceAnotacion
     private int numero_creditos;
+    @InterfaceAnotacion
     private int cantidad_estudiantes;
 
     

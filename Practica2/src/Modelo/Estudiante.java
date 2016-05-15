@@ -11,9 +11,13 @@ package Modelo;
  */
 public class Estudiante implements java.io.Serializable{
 
+    @InterfaceAnotacion(guardarXml = true)
     private String carnet;
+    @InterfaceAnotacion(guardarXml = true)
     private String nombre;
+    @InterfaceAnotacion(guardarXml = true)
     private String correo;
+    @InterfaceAnotacion(guardarXml = false)
     private static String[] etiquetas = {"carnet", "nombre", "correo"};
 
     public static String[] getEtiquetas() {

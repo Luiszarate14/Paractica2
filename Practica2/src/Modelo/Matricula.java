@@ -12,33 +12,29 @@ import java.util.Objects;
  * @author luisza
  */
 public class Matricula implements java.io.Serializable {
+    @InterfaceAnotacion(guardarXml = true)
     private String curso;  // Sigla del curso
+    @InterfaceAnotacion(guardarXml = true)
     private String estudiante; // Carnet de estudiante
 
     public Matricula(String curso, String estudiante) {
         this.curso = curso;
         this.estudiante = estudiante;
     }
-
     public Matricula() {
     }
-
     public String getCurso() {
         return curso;
     }
-
     public void setCurso(String curso) {
         this.curso = curso;
     }
-
     public String getEstudiante() {
         return estudiante;
     }
-
     public void setEstudiante(String estudiante) {
         this.estudiante = estudiante;
     }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -46,7 +42,6 @@ public class Matricula implements java.io.Serializable {
         hash = 71 * hash + Objects.hashCode(this.estudiante);
         return hash;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -66,9 +61,5 @@ public class Matricula implements java.io.Serializable {
             return false;
         }
         return true;
-    }
-    
-    
-    
-    
+    }   
 }
